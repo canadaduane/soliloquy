@@ -5,10 +5,8 @@
 
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
-  import Chat from "./Chat.svelte";
   import Profile from "./Profile.svelte";
-  import PopTest from "./PopTest.svelte";
-  // import Pick from "./Color/Pick.svelte";
+  import Pick from "./Color/Pick.svelte";
 
   function addCharacter() {
     const newCharacter: Character = {
@@ -24,8 +22,9 @@
 <s-container>
   <!-- <s-timeline> t</s-timeline> -->
   <s-dialog>
-      <!-- <Pick /> -->
-    <PopTest />
+    <div>
+      <Pick />
+    </div>
 
     <s-characters-offstage>
       {#each $characters as character, i}

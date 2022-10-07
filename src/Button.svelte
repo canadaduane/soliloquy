@@ -1,8 +1,9 @@
 <script lang="ts">
   export let use = (_) => {};
+  export let buttonEl = null;
 </script>
 
-<button on:click use:use>
+<button on:click bind:this={buttonEl} use:use>
   <slot />
 </button>
 
