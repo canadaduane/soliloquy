@@ -1,9 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@floating-ui/dom': ^1.0.2
   '@neutralinojs/neu': ^9.3.1
   '@sveltejs/vite-plugin-svelte': ^1.0.1
   '@tsconfig/svelte': ^3.0.0
+  colorjs.io: ^0.4.0
   concurrently: ^7.3.0
   svelte: ^3.49.0
   svelte-icons: ^2.1.0
@@ -12,6 +14,8 @@ specifiers:
   vite: ^3.0.4
 
 dependencies:
+  '@floating-ui/dom': 1.0.2
+  colorjs.io: 0.4.0
   svelte-icons: 2.1.0
 
 devDependencies:
@@ -43,6 +47,16 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@floating-ui/core/1.0.1:
+    resolution: {integrity: sha512-bO37brCPfteXQfFY0DyNDGB3+IMe4j150KFQcgJ5aBP295p9nBGeHEs/p0czrRbtlHq4Px/yoPXO/+dOCcF4uA==}
+    dev: false
+
+  /@floating-ui/dom/1.0.2:
+    resolution: {integrity: sha512-5X9WSvZ8/fjy3gDu8yx9HAA4KG1lazUN2P4/VnaXLxTO9Dz53HI1oYoh1OlhqFNlHgGDiwFX5WhFCc2ljbW3yA==}
+    dependencies:
+      '@floating-ui/core': 1.0.1
+    dev: false
 
   /@neutralinojs/neu/9.3.1:
     resolution: {integrity: sha512-FGvDrYT+nkPbBIEx/q53cizaz4oVNM7Zt6l7xOtcWSuPetaIZv8WarS8J4udKYsln5tc9tufhW0xOf7x+EhaSA==}
@@ -333,6 +347,10 @@ packages:
   /color-name/1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: true
+
+  /colorjs.io/0.4.0:
+    resolution: {integrity: sha512-AUKG9GCDSHsFRUnxGrEMCm6nq6lxddnDvD0avmsy/klCEk68htpqgl9IERGtGoxaGJlr7uP5wmD381gY2uG8hw==}
+    dev: false
 
   /commander/5.1.0:
     resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}

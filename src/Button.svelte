@@ -1,4 +1,8 @@
-<button on:click>
+<script lang="ts">
+  export let use = (_) => {};
+</script>
+
+<button on:click use:use>
   <slot />
 </button>
 

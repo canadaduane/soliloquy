@@ -80,7 +80,7 @@
     display: block;
     width: 120px;
     height: 120px;
-    background-image: url("assets/soliloquy.png");
+    background-image: url("/assets/soliloquy.png");
     background-size: 120px 120px;
     background-position: center;
   }

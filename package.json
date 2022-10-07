@@ -13,6 +13,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@floating-ui/dom": "^1.0.2",
+    "colorjs.io": "^0.4.0",
     "svelte-icons": "^2.1.0"
   },
   "devDependencies": {
