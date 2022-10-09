@@ -4,7 +4,7 @@
 
 <s-input>
   <div>#</div>
-  <input bind:value />
+  <input bind:value on:keypress />
 </s-input>
 
 <style>

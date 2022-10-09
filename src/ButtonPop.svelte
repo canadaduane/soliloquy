@@ -10,8 +10,9 @@
 
   import Button from "./Button.svelte";
 
+  export let open = false;
+
   let popEl, buttonEl;
-  let popped: boolean = false;
 
   let arrowRef: Writable<HTMLElement> = writable();
 
@@ -42,11 +43,11 @@
   });
 </script>
 
-<Button use={floatingRef} on:click={() => (popped = !popped)} bind:buttonEl>
+<Button use={floatingRef} on:click={() => (open = !open)} bind:buttonEl>
   <slot name="button">Open</slot>
 </Button>
 
-{#if popped}
+{#if open}
   <s-pop-content use:floatingContent bind:this={popEl}>
     <slot />
     <div class="arrow" bind:this={$arrowRef} />
@@ -55,9 +56,9 @@
 
 <svelte:window
   on:click={(event) => {
-    if (!popped) return;
+    if (!open) return;
     if (!popEl.contains(event.target) && !buttonEl.contains(event.target)) {
-      popped = false;
+      open = false;
     }
   }}
 />

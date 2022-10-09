@@ -1,36 +1,34 @@
 <script lang="ts">
-  import ButtonPop from "../ButtonPop.svelte";
+  import { createEventDispatcher } from "svelte";
   import HexInput from "./HexInput.svelte";
   import Swatch from "./Swatch.svelte";
 
-  // export let x: number = null
-  // export let y: number = null
+  export let customValue = "FFFFFF";
+
+  const dispatch = createEventDispatcher();
+
+  const colors = [
+    "#FF6900",
+    "#FCB900",
+    "#7BDCB5",
+    "#00D084",
+    "#8ED1FC",
+    "#0693E3",
+    "#ABB8C3",
+    "#EB144C",
+    "#F78DA7",
+    "#9900EF",
+  ];
 
   let picker: HTMLElement;
-
-  // onMount(() => {
-  //   const rect = picker.getBoundingClientRect()
-
-  //   picker.style.left = `${rect.width/2}px`
-  // });
 </script>
 
-<ButtonPop>
-  <span slot="button">Color</span>
-  <s-pick bind:this={picker}>
-    <Swatch color="#FF6900" />
-    <Swatch color="#FCB900" />
-    <Swatch color="#7BDCB5" />
-    <Swatch color="#00D084" />
-    <Swatch color="#8ED1FC" />
-    <Swatch color="#0693E3" />
-    <Swatch color="#ABB8C3" />
-    <Swatch color="#EB144C" />
-    <Swatch color="#F78DA7" />
-    <Swatch color="#9900EF" />
-    <HexInput value="FFFFFF" />
-  </s-pick>
-</ButtonPop>
+<s-pick bind:this={picker}>
+  {#each colors as color}
+    <Swatch {color} on:click={() => dispatch("select", color)} />
+  {/each}
+  <HexInput bind:value={customValue} />
+</s-pick>
 
 <style>
   s-pick {
@@ -39,5 +37,9 @@
 
     width: 252px;
     padding: 6px 0px 0px 6px;
+  }
+
+  s-pick > :global(s-swatch) {
+    margin: 0px 6px 6px 0px;
   }
 </style>

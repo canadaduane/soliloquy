@@ -6,7 +6,7 @@
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
   import Profile from "./Profile.svelte";
-  import Pick from "./Color/Pick.svelte";
+  import SwatchPop from "./Color/SwatchPop.svelte";
 
   function addCharacter() {
     const newCharacter: Character = {
@@ -17,13 +17,15 @@
     };
     $characters = [...$characters, newCharacter];
   }
+
+  let color = "#FF0000";
 </script>
 
 <s-container>
   <!-- <s-timeline> t</s-timeline> -->
   <s-dialog>
     <div>
-      <Pick />
+      <SwatchPop bind:color />
     </div>
 
     <s-characters-offstage>

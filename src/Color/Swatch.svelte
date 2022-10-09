@@ -1,24 +1,16 @@
 <script lang="ts">
   export let color: string;
-  // #FF6900
 </script>
 
-<!-- 
-
-  https://svelte-awesome-color-picker.vercel.app/
-  http://casesandberg.github.io/react-color/
-  https://github.com/sseemayer/svelte-colorpick
-  https://bottosson.github.io/posts/oklab/
-
-
- -->
-<s-swatch>
+<s-swatch role="button" on:click>
   <s-color title={color.toUpperCase()} tabindex="0" style="--color: {color}" />
 </s-swatch>
 
 <style>
   s-swatch {
     display: block;
+    box-shadow: inset 0 0 2px 2px white;
+    border-radius: 6px;
   }
 
   s-color {
@@ -29,6 +21,5 @@
     cursor: pointer;
     outline: currentcolor none medium;
     border-radius: 4px;
-    margin: 0px 6px 6px 0px;
   }
 </style>
