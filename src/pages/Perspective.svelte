@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TopDrawer from "../kit/TopDrawer.svelte";
   import IoIosAdd from "svelte-icons/io/IoIosAdd.svelte";
 
   import { characters, type Character } from "../characters";
@@ -19,9 +20,16 @@
 </script>
 
 <s-container>
-  <!-- <s-timeline> t</s-timeline> -->
-  <s-dialog>
-    <s-characters-offstage>
+  <TopDrawer>
+    <s-drawer>
+      {#each $characters as character}
+        <Profile {character} />
+      {/each}
+    </s-drawer>
+  </TopDrawer>
+</s-container>
+
+<!-- <s-characters-offstage>
       {#each $characters as character, i}
         <Profile {character} />
       {/each}
@@ -36,10 +44,7 @@
         </s-plus>
         Add Character
       </Button>
-    </s-buttons>
-  </s-dialog>
-</s-container>
-
+    </s-buttons> -->
 <style>
   s-container {
     display: flex;
@@ -48,32 +53,8 @@
     height: 100vh;
   }
 
-  /* s-timeline {
-    display: block;
-    width: 60px;
-    margin: 0 8px;
-    flex-grow: 0;
-  } */
-
-  s-dialog {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  s-characters-offstage {
+  s-drawer {
     display: flex;
     flex-direction: row;
   }
-  /* s-plus {
-    display: flex;
-    padding: 2px 4px 2px 0px;
-  }
-
-  s-characters {
-    overflow: auto;
-  }
-
-  s-character {
-  } */
 </style>
