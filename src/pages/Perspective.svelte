@@ -1,33 +1,26 @@
 <script lang="ts">
   import IoIosAdd from "svelte-icons/io/IoIosAdd.svelte";
 
-  import { characters, type Character } from "./characters";
+  import { characters, type Character } from "../characters";
 
-  import Button from "./Button.svelte";
-  import Icon from "./Icon.svelte";
-  import Profile from "./Profile.svelte";
-  import SwatchPop from "./Color/SwatchPop.svelte";
+  import Button from "../kit/Button.svelte";
+  import Icon from "../kit/Icon.svelte";
+  import Profile from "../Profile.svelte";
 
   function addCharacter() {
     const newCharacter: Character = {
       name: "New Character",
-      color: "#fff",
+      color: "#f9e",
       image: null,
       details: "Leader",
     };
     $characters = [...$characters, newCharacter];
   }
-
-  let color = "#FF0000";
 </script>
 
 <s-container>
   <!-- <s-timeline> t</s-timeline> -->
   <s-dialog>
-    <div>
-      <SwatchPop bind:color />
-    </div>
-
     <s-characters-offstage>
       {#each $characters as character, i}
         <Profile {character} />

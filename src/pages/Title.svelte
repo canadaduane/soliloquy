@@ -5,9 +5,9 @@
   import IoIosInformationCircleOutline from "svelte-icons/io/IoIosInformationCircleOutline.svelte";
   import IoIosArrowForward from "svelte-icons/io/IoIosArrowForward.svelte";
 
-  import Icon from "./Icon.svelte";
-  import IconButton from "./IconButton.svelte";
-  import Button from "./Button.svelte";
+  import Icon from "../kit/Icon.svelte";
+  import IconButton from "../kit/IconButton.svelte";
+  import Button from "../kit/Button.svelte";
 
   const dispatch = createEventDispatcher();
 

@@ -6,7 +6,7 @@
 
   function pickColor(character: Character) {
     // TODO: pick color based on character attributes, e.g. name
-    return character.color ?? "#fff";
+    return character.color ?? "#f99";
   }
 
 

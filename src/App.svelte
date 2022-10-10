@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Title from "./Title.svelte";
-  import Dialog from "./Dialog.svelte";
+  import Title from "./pages/Title.svelte";
+  import Perspective from "./pages/Perspective.svelte";
 
   let page: "title" | "dialog" = "title";
 
@@ -19,24 +19,13 @@
   {#if page === "title"}
     <Title on:begin={() => (page = "dialog")} />
   {:else if page === "dialog"}
-    <Dialog />
+    <Perspective />
   {/if}
 </main>
 
 <svelte:window on:keydown={onKeypress} />
 
 <style>
-  :global(html) {
-    height: 100%;
-    color: white;
-    background-color: #272727;
-  }
-
-  :global(body) {
-    margin: 0;
-    height: 100%;
-  }
-
   main {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     /* font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
