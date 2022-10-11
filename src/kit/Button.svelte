@@ -15,7 +15,6 @@
     border-radius: 32px;
 
     padding: 8px 16px;
-    margin: 12px;
 
     background-color: #fe5f88;
     color: white;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Character } from "./characters";
+  import type { Character } from "src/types";
 
   export let character: Character;
 </script>

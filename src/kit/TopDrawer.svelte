@@ -3,6 +3,8 @@
   import { quintOut } from "svelte/easing";
 
   let open = false;
+
+  // Possible alternative sliding mechanism: https://svelte.dev/repl/03f0be0c4dc54eb4af5a168f644f5c31?version=3.19.1
 </script>
 
 <s-top-drawer>
@@ -20,7 +22,7 @@
 
 <style>
   s-top-drawer {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;

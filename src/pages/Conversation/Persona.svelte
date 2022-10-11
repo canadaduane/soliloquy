@@ -1,5 +1,9 @@
 <script lang="ts">
-  import type { Character } from "./characters";
+  import type { Character } from "src/types";
+
+  import { fly } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
+
   import Color from "colorjs.io";
 
   export let character: Character;
@@ -29,7 +33,11 @@
   // https://search.muz.li/Yzc4ZmJmMDBl?utm_source=muz.li-insp
 </script>
 
-<s-profile style="--bg: {bgColor}; --bg-darker: {bgDarker}; --color: {fgColor}">
+<s-profile
+  style="--bg: {bgColor}; --bg-darker: {bgDarker}; --color: {fgColor}"
+  transition:fly={{ opacity: 1, y: -160, easing: quintOut }}
+  on:click
+>
   <s-thumbnail>
     {#if character.image}
       <img src={character.image} alt="profile pic" />
@@ -47,11 +55,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     width: 120px;
+    height: 160px;
+
     border-radius: 12px;
     background-color: var(--bg);
     padding: 18px;
     margin: 6px;
+
+    cursor: pointer;
   }
 
   s-name {
@@ -70,6 +83,12 @@
     border-radius: 100%;
     overflow: hidden;
     flex-shrink: 0;
+  }
+
+  s-thumbnail > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   s-bg {
