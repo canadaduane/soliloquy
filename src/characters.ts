@@ -30,39 +30,31 @@ const imgSage = "/archetypes/sage.webp";
 export const characters: Writable<Character[]> = writable([
   {
     name: "Creator",
-    color: "#0191b7",
+    color: "#01b06b",
     image: imgCreator,
     details: null,
     isNew: false,
   },
 
   {
-    name: "Ruler",
-    color: "#0982b7",
-    image: imgRuler,
+    name: "Explorer",
+    color: "#7ac304",
+    image: imgExplorer,
     details: null,
     isNew: false,
   },
 
   {
-    name: "Caregiver",
-    color: "#385395",
-    image: imgCaregiver,
-    details: null,
-    isNew: false,
-  },
-
-  {
-    name: "Everyman",
-    color: "#914786",
-    image: imgEveryman,
+    name: "Outlaw",
+    color: "#ffcc00",
+    image: imgOutlaw,
     details: null,
     isNew: false,
   },
 
   {
     name: "Jester",
-    color: "#bb326e",
+    color: "#ffa901",
     image: imgJester,
     details: null,
     isNew: false,
@@ -70,56 +62,64 @@ export const characters: Writable<Character[]> = writable([
 
   {
     name: "Lover",
-    color: "#cc4e52",
+    color: "#ff6801",
     image: imgLover,
     details: null,
     isNew: false,
   },
 
   {
-    name: "Hero",
-    color: "#cb752b",
-    image: imgHero,
+    name: "Caregiver",
+    color: "#ff410d",
+    image: imgCaregiver,
     details: null,
     isNew: false,
   },
 
   {
-    name: "Magician",
-    color: "#d69e1e",
-    image: imgMagician,
-    details: null,
-    isNew: false,
-  },
-
-  {
-    name: "Outlaw",
-    color: "#d0bd19",
-    image: imgOutlaw,
-    details: null,
-    isNew: false,
-  },
-
-  {
-    name: "Explorer",
-    color: "#91ae40",
-    image: imgExplorer,
-    details: null,
-    isNew: false,
-  },
-
-  {
-    name: "Sage",
-    color: "#009d64",
-    image: imgSage,
+    name: "Everyman",
+    color: "#ed0036",
+    image: imgEveryman,
     details: null,
     isNew: false,
   },
 
   {
     name: "Innocent",
-    color: "#1c9287",
+    color: "#ee2c8d",
     image: imgInnocent,
+    details: null,
+    isNew: false,
+  },
+
+  {
+    name: "Ruler",
+    color: "#ac3e9f",
+    image: imgRuler,
+    details: null,
+    isNew: false,
+  },
+
+  {
+    name: "Sage",
+    color: "#641b86",
+    image: imgSage,
+    details: null,
+    isNew: false,
+  },
+
+  {
+    name: "Magician",
+    color: "#21379c",
+    image: imgMagician,
+    details: null,
+    isNew: false,
+  },
+
+  {
+    name: "Hero",
+    color: "#00aef5",
+    image: imgHero,
     details: null,
     isNew: false,
   },
