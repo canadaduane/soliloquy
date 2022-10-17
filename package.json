@@ -14,14 +14,18 @@
   "license": "MIT",
   "dependencies": {
     "@floating-ui/dom": "^1.0.2",
+    "anchorme": "^2.1.2",
     "colorjs.io": "^0.4.0",
-    "svelte-icons": "^2.1.0"
+    "svelte-icons": "^2.1.0",
+    "xss": "^1.0.14"
   },
   "devDependencies": {
     "@neutralinojs/neu": "^9.3.1",
+    "@rollup/plugin-alias": "^4.0.0",
     "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "@tsconfig/svelte": "^3.0.0",
     "concurrently": "^7.3.0",
+    "rollup": "^3.2.2",
     "svelte": "^3.49.0",
     "svelte-preprocess": "^4.10.7",
     "typescript": "^4.7.4",

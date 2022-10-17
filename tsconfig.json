@@ -5,7 +5,8 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "resolveJsonModule": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "paths": { "~/*": ["./src/*"] },
     "isolatedModules": true
   },
   "include": ["types", "src", "lib"],
