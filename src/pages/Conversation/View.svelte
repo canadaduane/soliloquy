@@ -1,78 +1,46 @@
 <script lang="ts">
-  import type { Character } from "../../types";
+  import History from "./History.svelte";
+  import ChatInput from "./ChatInput.svelte";
+  import TopExpand from "./TopExpand.svelte";
 
-  import { createEventDispatcher } from "svelte";
-  import IoIosAdd from "svelte-icons/io/IoIosAdd.svelte";
-
-  import { characters } from "../../characters";
-
-  import TopDrawer from "../../kit/TopDrawer.svelte";
-  import Icon from "../../kit/Icon.svelte";
-
-  import Persona from "./Persona.svelte";
-
-  const dispatch = createEventDispatcher();
-
-  function addCharacter() {
-    const newCharacter: Character = {
-      name: "Edit New Persona",
-      color: "#f9e",
-      image: null,
-      details: null,
-      isNew: true,
-    };
-    $characters = [...$characters, newCharacter];
-  }
-
-  const clickPersona = (character: Character) => () => {
-    if (character.isNew) {
-      dispatch("toCasting", { character });
-    } else {
-      dispatch("toConversation", { character });
-    }
-  };
+  // Inspiring UIs:
+  // https://i.pinimg.com/originals/92/e8/29/92e829bf34dd6f30b34136e8381ee696.png
+  // https://cdn.dribbble.com/users/2369119/screenshots/10492819/media/22dab10553c050ec60987c101ef6b452.png
+  // https://cdn.dribbble.com/users/870342/screenshots/6075713/whatsapp_dark_mode_home___chat_4x.jpg
 </script>
 
-<s-container>
-  <TopDrawer>
-    <s-drawer>
-      {#each $characters as character}
-        <Persona {character} on:click={clickPersona(character)} />
-      {/each}
-      <s-add-button role="button" on:click={addCharacter}>
-        <Icon size={48}>
-          <IoIosAdd />
-        </Icon>
-      </s-add-button>
-    </s-drawer>
-  </TopDrawer>
-</s-container>
+<TopExpand />
+
+<s-conversation>
+  <s-left> left </s-left>
+  <s-middle>
+    <History />
+    <ChatInput on:close />
+  </s-middle>
+  <s-right> right </s-right>
+</s-conversation>
 
 <style>
-  s-container {
+  s-conversation {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+
+    position: absolute;
+    top: 40px;
+    left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 40px);
   }
 
-  s-drawer {
+  s-middle {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    flex-shrink: 0;
+    flex-grow: 0;
 
-    max-height: 436px;
-    overflow-y: scroll;
-  }
-
-  s-add-button {
-    display: block;
-    cursor: pointer;
-  }
-
-  s-add-button:hover {
-    background-color: #777;
+    border: 2px solid #1277d6;
     border-radius: 6px;
+    margin: 6px;
   }
 </style>

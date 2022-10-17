@@ -5,13 +5,14 @@
   import Conversation from "./pages/Conversation/View.svelte";
   import Casting from "./pages/Casting/View.svelte";
 
+  import { me } from "~/stores/me";
+
   let page: Page = "title";
   let castingCharacter: Character;
-  let converseCharacter: Character;
 
   function toConversation({ detail }) {
     if (page != "conversation") page = "conversation";
-    converseCharacter = detail.character;
+    $me = detail.character;
   }
 
   function toCasting({ detail }) {
@@ -23,11 +24,7 @@
 {#if page === "title"}
   <Title on:begin={() => (page = "conversation")} />
 {:else if page === "conversation"}
-  <Conversation
-    character={converseCharacter}
-    on:toCasting={toCasting}
-    on:toConversation={toConversation}
-  />
+  <Conversation on:toCasting={toCasting} on:toConversation={toConversation} />
 {:else if page === "casting"}
   <Casting character={castingCharacter} />
 {/if}

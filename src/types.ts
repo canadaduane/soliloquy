@@ -7,3 +7,9 @@ export type Character = {
   details: string;
   isNew: boolean;
 };
+
+export type Message = {
+  character: Character;
+  content: string;
+  timestamp: Date;
+};
