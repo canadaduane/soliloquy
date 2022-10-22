@@ -6,6 +6,7 @@ export type Character = {
   image: string;
   details: string;
   isNew: boolean;
+  isSelected: boolean;
 };
 
 export type Message = {

@@ -12,24 +12,32 @@
 <TopExpand />
 
 <s-conversation>
+  <s-left>left</s-left>
   <s-middle>
-    <s-left>left</s-left>
     <History />
     <ChatInput on:close />
-    <s-right>right</s-right>
   </s-middle>
+  <s-right>right</s-right>
 </s-conversation>
 
 <style>
   s-conversation {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 40px);
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+  }
+
+  s-middle,
+  s-left,
+  s-right {
+    margin: 6px;
+    width: 300px;
+    min-height: 240px;
   }
 
   s-middle {
@@ -37,30 +45,40 @@
 
     display: flex;
     flex-direction: column;
-    width: 300px;
     flex-shrink: 0;
     flex-grow: 0;
 
+    height: calc(100vh - 95px);
+    max-height: 650px;
+
     border: 2px solid #1277d6;
     border-radius: 6px;
-    margin: 6px;
   }
 
   s-left {
-    position: absolute;
-    left: -312px;
-    bottom: 0;
-    width: 300px;
     border: 1px solid red;
     border-radius: 6px;
   }
 
   s-right {
-    position: absolute;
-    right: -312px;
-    bottom: 0;
-    width: 300px;
     border: 1px solid red;
     border-radius: 6px;
+  }
+
+  @media (max-width: 660px) {
+    s-conversation {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      height: auto;
+    }
+
+    s-left {
+      order: 1;
+    }
+
+    s-right {
+      order: 2;
+    }
   }
 </style>

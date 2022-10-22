@@ -74,7 +74,8 @@
     align-items: center;
     flex-direction: column;
     padding: 0 90px;
-    margin: 40px 0;
+    height: 100vh;
+    justify-content: center;
   }
   s-image {
     display: block;
