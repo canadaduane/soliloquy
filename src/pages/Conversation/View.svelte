@@ -12,12 +12,12 @@
 <TopExpand />
 
 <s-conversation>
-  <s-left> left </s-left>
   <s-middle>
+    <s-left>left</s-left>
     <History />
     <ChatInput on:close />
+    <s-right>right</s-right>
   </s-middle>
-  <s-right> right </s-right>
 </s-conversation>
 
 <style>
@@ -33,6 +33,8 @@
   }
 
   s-middle {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -42,5 +44,23 @@
     border: 2px solid #1277d6;
     border-radius: 6px;
     margin: 6px;
+  }
+
+  s-left {
+    position: absolute;
+    left: -312px;
+    bottom: 0;
+    width: 300px;
+    border: 1px solid red;
+    border-radius: 6px;
+  }
+
+  s-right {
+    position: absolute;
+    right: -312px;
+    bottom: 0;
+    width: 300px;
+    border: 1px solid red;
+    border-radius: 6px;
   }
 </style>

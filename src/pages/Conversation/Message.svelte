@@ -2,15 +2,17 @@
   import { cleanHtml } from "~/utils/cleanHtml";
 
   export let name: string;
-  export let content: string;
   export let color: string;
+  export let side: "left" | "right" = "left";
 </script>
 
-<s-message>
+<s-message class:right={side === "right"}>
   <id-circle style="background-color:{color}" />
   <container>
     <who>{@html cleanHtml(name)}</who>
-    <content>{@html cleanHtml(content)}</content>
+    <content>
+      <slot />
+    </content>
   </container>
 </s-message>
 
@@ -28,6 +30,19 @@
   s-message :global(a),
   s-message :global(a:visited) {
     color: cornflowerblue;
+  }
+
+  s-message.right {
+    color: white;
+    background-color: #1277d6;
+
+    border-radius: 9px 9px 0 9px;
+
+    align-self: flex-end;
+    text-align: left;
+
+    padding: 6px 10px;
+    margin: 3px;
   }
 
   who {

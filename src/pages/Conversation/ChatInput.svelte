@@ -6,7 +6,8 @@
 
   const dispatch = createEventDispatcher();
 
-  let inputEl;
+  let messageEl;
+  let message;
 
   function addMessage(text) {
     if (text.match(/^\s*$/)) {
@@ -14,61 +15,96 @@
     } else {
       // add message
       messages.update((msgs) => {
-        msgs.push({
+        const message = {
           character: $me,
           content: text,
           timestamp: new Date(),
-        });
+        };
+        console.log("message", JSON.stringify(message));
+        msgs.push(message);
         return msgs;
       });
     }
   }
 
+  function sendMessage() {
+    console.log(JSON.stringify(message));
+    const htmlMsg = message.replace("\n", "<br/>");
+    addMessage(htmlMsg);
+    message = "";
+  }
+
   function onKeydown(event) {
     if (event.key === "Escape") {
       dispatch("close");
-    } else if (event.key === "Enter" || event.key === "Return") {
-      addMessage(event.target.value);
-      event.target.value = "";
+    } else if (
+      (event.key === "Enter" || event.key === "Return") &&
+      !event.shiftKey
+    ) {
+      sendMessage();
     }
   }
 
   onMount(() => {
     setTimeout(() => {
-      inputEl.focus();
+      messageEl.focus();
     }, 50);
   });
 </script>
 
-<r-input>
-  <input type="text" on:keydown={onKeydown} bind:this={inputEl} />
-</r-input>
+<r-chat-input>
+  <r-message
+    contenteditable
+    on:keydown={onKeydown}
+    bind:textContent={message}
+    bind:this={messageEl}
+  />
+  <r-send on:click={sendMessage} role="button" />
+</r-chat-input>
 
 <style>
-  r-input {
+  r-chat-input {
     position: absolute;
-    bottom: 12px;
+    bottom: 0;
 
-    display: block;
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
 
-    width: 250px;
-  }
-
-  input {
-    /* Note: 8px is (2px padding + 2px border) * 2 */
-    width: calc(100% - 8px);
-
-    padding: 1px 2px;
-    border: 2px solid transparent;
+    background-color: #383838;
     border-radius: 4px;
-
-    font-size: 20px;
-    line-height: 32px;
+    width: 100%;
   }
 
-  input:focus {
-    outline: none;
-    border: 2px solid cornflowerblue;
+  r-message {
+    display: block;
+    align-self: center;
+
+    font-size: 16px;
+    line-height: 18px;
+    min-height: 1em;
+    max-height: 150px;
+    width: 100%;
+
+    padding: 4px 8px;
+
+    overflow-y: auto;
+    white-space: pre-line;
+  }
+
+  r-send {
+    display: block;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    background-color: #fe5f88;
+    color: white;
+  }
+  r-send:hover {
+    background-color: #c7446c;
+    color: #ddd;
   }
 </style>

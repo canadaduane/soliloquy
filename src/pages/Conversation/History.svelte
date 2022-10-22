@@ -28,17 +28,13 @@
   {:else}
     <s-scrollable>
       {#each $messages as message}
-        {#if message.character === $me}
-          <message class:mine={true}>
-            {@html cleanHtml(message.content)}
-          </message>
-        {:else}
-          <Message
-            name={message.character.name}
-            content={message.content}
-            color={message.character.color}
-          />
-        {/if}
+        <Message
+          name={message.character.name}
+          color={message.character.color}
+          side={message.character === $me ? "right" : "left"}
+        >
+          {message.content}
+        </Message>
       {/each}
     </s-scrollable>
   {/if}
@@ -56,11 +52,6 @@
     overflow-y: scroll;
   }
 
-  message.mine :global(a),
-  message.mine :global(a:visited) {
-    color: yellow;
-  }
-
   s-scrollable {
     display: flex;
     flex-direction: column;
@@ -71,18 +62,5 @@
     justify-content: center;
     margin-bottom: 16px;
     color: #333;
-  }
-
-  message.mine {
-    color: white;
-    background-color: #1277d6;
-
-    border-radius: 9px 9px 0 9px;
-
-    align-self: flex-end;
-    text-align: right;
-
-    padding: 6px 10px;
-    margin: 3px;
   }
 </style>
