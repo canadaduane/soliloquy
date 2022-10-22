@@ -1,25 +1,18 @@
 import type { Character } from "../types";
 
 import { writable, type Writable } from "svelte/store";
+import Color from "colorjs.io";
 
-const imgCaregiver = "/archetypes/caregiver.webp";
-const imgCreator = "/archetypes/creator.webp";
-const imgEveryman = "/archetypes/everyman.webp";
-const imgExplorer = "/archetypes/explorer.webp";
-const imgHero = "/archetypes/hero.webp";
-const imgInnocent = "/archetypes/innocent.webp";
-const imgJester = "/archetypes/jester.webp";
-const imgLover = "/archetypes/lover.webp";
-const imgMagician = "/archetypes/magician.webp";
-const imgOutlaw = "/archetypes/outlaw.webp";
-const imgRuler = "/archetypes/ruler.webp";
-const imgSage = "/archetypes/sage.webp";
+let color = -20;
+const lg = 0.9; // lightness
+const ch = 0.1; // chroma
+const step = 360 / 12;
 
 export const characters: Writable<Character[]> = writable([
   {
     name: "Creator",
-    color: "#01b06b",
-    image: imgCreator,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/creator.webp",
     details:
       "The drive to express and create--to paint, compose, build, innovate.",
     isNew: false,
@@ -27,88 +20,88 @@ export const characters: Writable<Character[]> = writable([
 
   {
     name: "Explorer",
-    color: "#7ac304",
-    image: imgExplorer,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/explorer.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Outlaw",
-    color: "#ffcc00",
-    image: imgOutlaw,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/outlaw.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Jester",
-    color: "#ffa901",
-    image: imgJester,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/jester.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Lover",
-    color: "#ff6801",
-    image: imgLover,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/lover.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Caregiver",
-    color: "#ff410d",
-    image: imgCaregiver,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/caregiver.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Everyman",
-    color: "#ed0036",
-    image: imgEveryman,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/everyman.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Innocent",
-    color: "#ee2c8d",
-    image: imgInnocent,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/innocent.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Ruler",
-    color: "#ac3e9f",
-    image: imgRuler,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/ruler.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Sage",
-    color: "#641b86",
-    image: imgSage,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/sage.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Magician",
-    color: "#21379c",
-    image: imgMagician,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/magician.webp",
     details: null,
     isNew: false,
   },
 
   {
     name: "Hero",
-    color: "#00aef5",
-    image: imgHero,
+    color: new Color("oklch", [lg, ch, (color += step)]),
+    image: "/archetypes/hero.webp",
     details: null,
     isNew: false,
   },
