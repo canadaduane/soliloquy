@@ -1,24 +1,22 @@
 <script lang="ts">
   import type { Character } from "../../types";
 
-  import { createEventDispatcher } from "svelte";
   import IoIosAdd from "svelte-icons/io/IoIosAdd.svelte";
 
   import { characters } from "../../stores/characters";
+  import { me } from "../../stores/me";
 
   import TopDrawer from "../../kit/TopDrawer.svelte";
   import Icon from "../../kit/Icon.svelte";
 
   import Persona from "./Persona.svelte";
 
-  const dispatch = createEventDispatcher();
-
   function addCharacter() {
     const newCharacter: Character = {
       name: "Edit New Persona",
       color: "#f9e",
       image: null,
-      details: null,
+      description: null,
       isNew: true,
       isSelected: false,
     };
@@ -26,13 +24,9 @@
   }
 
   const clickPersona = (character: Character) => () => {
-    // if (character.isNew) {
-    //   dispatch("toCasting", { character });
-    // } else {
-    //   dispatch("toConversation", { character });
-    // }
-
     character.isSelected = !character.isSelected;
+
+    if (!$me) $me = character;
 
     // Notify svelte store that an item changed
     $characters = $characters;

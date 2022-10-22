@@ -60,7 +60,7 @@
   note {
     display: flex;
     justify-content: center;
-    margin-bottom: 16px;
-    color: #333;
+    margin: 16px;
+    color: #888;
   }
 </style>

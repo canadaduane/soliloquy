@@ -7,6 +7,7 @@
   import Color from "colorjs.io";
 
   export let character: Character;
+  export let isSelected: boolean = undefined;
 
   let bgColor;
   $: bgColor = character.color ?? "#FF9999";
@@ -36,7 +37,7 @@
 <s-profile
   style="--bg: {bgColor}; --bg-darker: {bgDarker}; --color: {fgColor}"
   transition:fly={{ opacity: 1, y: -160, easing: quintOut }}
-  class:outlined={character.isSelected}
+  class:outlined={isSelected ?? character.isSelected}
   on:click
 >
   <s-thumbnail>

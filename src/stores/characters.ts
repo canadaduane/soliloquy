@@ -12,7 +12,7 @@ function makeCharacter(traits: {
   name: string;
   color?: string;
   image?: string;
-  details?: string;
+  description?: string;
   isNew?: boolean;
   isSelected?: boolean;
 }): Character {
@@ -24,7 +24,7 @@ function makeCharacter(traits: {
         ? traits.image
         : `/archetypes/${traits.image}`
       : null,
-    details: traits.details ?? null,
+    description: traits.description ?? null,
     isNew: traits.isNew ?? false,
     isSelected: traits.isSelected ?? false,
   };
@@ -34,76 +34,76 @@ export const characters: Writable<Character[]> = writable([
   makeCharacter({
     name: "Creator",
     image: "creator.webp",
-    details:
+    description:
       "The drive to express and create--to paint, compose, build, innovate.",
   }),
 
   makeCharacter({
     name: "Explorer",
     image: "explorer.webp",
-    details: "Wanderlust, novelty, curiosity.",
+    description: "Wanderlust, novelty, curiosity.",
   }),
 
   makeCharacter({
     name: "Outlaw",
     image: "outlaw.webp",
-    details: "Rule-breaker, don't cross my boundaries.",
+    description: "Rule-breaker, don't cross my boundaries.",
   }),
 
   makeCharacter({
     name: "Jester",
     image: "jester.webp",
-    details: "Comic, fun-lover, goof, enjoys the moment.",
+    description: "Comic, fun-lover, goof, enjoys the moment.",
   }),
 
   makeCharacter({
     name: "Lover",
     image: "lover.webp",
-    details:
+    description:
       "Giving yourself fully, entranced by life, possibly insane but ok with it.",
   }),
 
   makeCharacter({
     name: "Caregiver",
     image: "caregiver.webp",
-    details: "Expanding the self, duty and concern for others.",
+    description: "Expanding the self, duty and concern for others.",
   }),
 
   makeCharacter({
     name: "Everyman",
     image: "everyman.webp",
-    details: "Get along, hang with friends, keep things simple & routine.",
+    description: "Get along, hang with friends, keep things simple & routine.",
   }),
 
   makeCharacter({
     name: "Innocent",
     image: "innocent.webp",
-    details: "The wonder of first experiences, untainted and no judgment.",
+    description: "The wonder of first experiences, untainted and no judgment.",
   }),
 
   makeCharacter({
     name: "Ruler",
     image: "ruler.webp",
-    details: "Order and prosperity, tight grip, avoid uncertainties.",
+    description: "Order and prosperity, tight grip, avoid uncertainties.",
   }),
 
   makeCharacter({
     name: "Sage",
     image: "sage.webp",
-    details:
+    description:
       "Understanding of many generations, patience, influence without control.",
   }),
 
   makeCharacter({
     name: "Magician",
     image: "magician.webp",
-    details:
+    description:
       "Unexpected, unpredictable, you never know what's around the corner.",
   }),
 
   makeCharacter({
     name: "Hero",
     image: "hero.webp",
-    details: "Action is mine, I will make my mark, right wrongs.",
+    description: "Action is mine, I will make my mark, right wrongs.",
   }),
 ]);

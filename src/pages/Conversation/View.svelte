@@ -1,7 +1,12 @@
 <script lang="ts">
+  import { selectedCharacters } from "~/stores/selectedCharacters";
+  import { me } from "~/stores/me";
+
   import History from "./History.svelte";
   import ChatInput from "./ChatInput.svelte";
   import TopExpand from "./TopExpand.svelte";
+  import Persona from "./Persona.svelte";
+  import { characters } from "~/stores/characters";
 
   // Inspiring UIs:
   // https://i.pinimg.com/originals/92/e8/29/92e829bf34dd6f30b34136e8381ee696.png
@@ -12,12 +17,30 @@
 <TopExpand />
 
 <s-conversation>
-  <s-left>left</s-left>
+  <s-left>
+    <s-left-column>
+      {#each $selectedCharacters as character}
+        <Persona
+          {character}
+          isSelected={character === $me}
+          on:click={() => ($me = character)}
+        />
+      {/each}
+    </s-left-column>
+  </s-left>
   <s-middle>
     <History />
-    <ChatInput on:close />
+    {#if $me}
+      <ChatInput on:close />
+    {:else}
+      <s-no-persona> Choose a persona to begin</s-no-persona>
+    {/if}
   </s-middle>
-  <s-right>right</s-right>
+  <s-right>
+    {#if $me?.description}
+      {$me?.description}
+    {/if}
+  </s-right>
 </s-conversation>
 
 <style>
@@ -56,13 +79,29 @@
   }
 
   s-left {
-    border: 1px solid red;
-    border-radius: 6px;
+    display: block;
+    overflow-y: auto;
+
+    max-height: 600px;
+  }
+  s-left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   s-right {
-    border: 1px solid red;
     border-radius: 6px;
+    background-color: #555;
+    padding: 8px;
+    align-self: flex-end;
+    margin-bottom: 16px;
+  }
+
+  s-no-persona {
+    color: #ccc;
+    margin: 12px auto;
+    font-size: 18px;
   }
 
   @media (max-width: 660px) {

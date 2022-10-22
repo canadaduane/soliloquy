@@ -4,7 +4,7 @@ export type Character = {
   name: string;
   color: string;
   image: string;
-  details: string;
+  description: string;
   isNew: boolean;
   isSelected: boolean;
 };
