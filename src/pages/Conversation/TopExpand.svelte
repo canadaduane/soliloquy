@@ -20,16 +20,22 @@
       image: null,
       details: null,
       isNew: true,
+      isSelected: false,
     };
     $characters = [...$characters, newCharacter];
   }
 
   const clickPersona = (character: Character) => () => {
-    if (character.isNew) {
-      dispatch("toCasting", { character });
-    } else {
-      dispatch("toConversation", { character });
-    }
+    // if (character.isNew) {
+    //   dispatch("toCasting", { character });
+    // } else {
+    //   dispatch("toConversation", { character });
+    // }
+
+    character.isSelected = !character.isSelected;
+
+    // Notify svelte store that an item changed
+    $characters = $characters;
   };
 </script>
 
@@ -53,7 +59,6 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 100vh;
   }
 
   s-drawer {

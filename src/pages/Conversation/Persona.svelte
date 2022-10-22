@@ -36,6 +36,7 @@
 <s-profile
   style="--bg: {bgColor}; --bg-darker: {bgDarker}; --color: {fgColor}"
   transition:fly={{ opacity: 1, y: -160, easing: quintOut }}
+  class:outlined={character.isSelected}
   on:click
 >
   <s-thumbnail>
@@ -59,12 +60,19 @@
     width: 120px;
     height: 160px;
 
+    border: 1px solid transparent;
+
     border-radius: 12px;
     background-color: var(--bg);
     padding: 18px;
     margin: 6px;
 
     cursor: pointer;
+  }
+
+  s-profile.outlined {
+    border: 1px solid #333;
+    box-shadow: 0px 0px 4px 4px white;
   }
 
   s-name {
