@@ -1,13 +1,21 @@
 <script lang="ts">
   import { cleanHtml } from "~/utils/cleanHtml";
+  import { highContrastColor } from "~/utils/highContrastColor";
 
   export let name: string;
   export let color: string;
   export let side: "left" | "right" = "left";
+
+  let fgColor;
+
+  $: fgColor = highContrastColor(color);
 </script>
 
-<s-message class:right={side === "right"}>
-  <id-circle style="background-color:{color}" />
+<s-message
+  class:right={side === "right"}
+  style="--bg: {color}; --fg: {fgColor}"
+>
+  <!-- <id-circle style="background-color:{color}" /> -->
   <container>
     <who>{@html cleanHtml(name)}</who>
     <content>
@@ -18,8 +26,10 @@
 
 <style>
   s-message {
-    color: #333;
-    background-color: #eee;
+    align-self: flex-start;
+
+    color: var(--fg);
+    background-color: var(--bg);
 
     border-radius: 9px 9px 9px 0;
 
@@ -33,16 +43,9 @@
   }
 
   s-message.right {
-    color: white;
-    background-color: #1277d6;
-
-    border-radius: 9px 9px 0 9px;
-
     align-self: flex-end;
     text-align: left;
-
-    padding: 6px 10px;
-    margin: 3px;
+    border-radius: 9px 9px 0 9px;
   }
 
   who {

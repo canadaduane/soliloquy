@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { Splitpanes, Pane } from "svelte-splitpanes";
+  import { slide, fly } from "svelte/transition";
 
   import { selectedCharacters } from "~/stores/selectedCharacters";
   import { me } from "~/stores/me";
 
   import History from "./History.svelte";
   import ChatInput from "./ChatInput.svelte";
-  import TopExpand from "./TopExpand.svelte";
   import Persona from "./Persona.svelte";
   import Button from "~/kit/Button.svelte";
   import Library from "./Library.svelte";
@@ -21,40 +20,42 @@
 
 <!-- <TopExpand /> -->
 
-<Splitpanes class="modern-theme" style="height: 100%">
-  {#if libraryOpen}
-    <Pane>
+<s-view>
+  <s-panes class:open={libraryOpen} class:closed={!libraryOpen}>
+    <s-pane>
       <Library />
-    </Pane>
-  {/if}
-  <Pane minSize={16.65}>
-    <s-stage>
-      {#each $selectedCharacters as character}
-        <Persona
-          {character}
-          isSelected={character === $me}
-          on:click={() => ($me = character)}
-        />
-      {/each}
-    </s-stage>
-    <Button on:click={() => (libraryOpen = !libraryOpen)}>Lib</Button>
-  </Pane>
-  <Pane minSize={33.3}>
-    <s-chat>
-      <History />
-      {#if $me}
-        <ChatInput on:close />
-      {:else}
-        <s-no-persona> Choose a persona to begin</s-no-persona>
-      {/if}
-    </s-chat>
-  </Pane>
-  {#if !libraryOpen}
-    <Pane>
+    </s-pane>
+
+    <s-pane>
+      <Button on:click={() => (libraryOpen = !libraryOpen)}>Library</Button>
+      <s-stage>
+        {#each $selectedCharacters as character}
+          <Persona
+            {character}
+            isSelected={character === $me}
+            on:click={() => ($me = character)}
+          />
+        {/each}
+      </s-stage>
+    </s-pane>
+
+    <s-pane style="width:300px">
+      <s-chat>
+        <History />
+        {#if $me}
+          <ChatInput on:close />
+        {:else}
+          <s-no-persona> Choose a persona to begin</s-no-persona>
+        {/if}
+      </s-chat>
+    </s-pane>
+
+    <s-pane>
+      Hello!
       {$me?.description}
-    </Pane>
-  {/if}
-</Splitpanes>
+    </s-pane>
+  </s-panes>
+</s-view>
 
 <style global>
   .splitpanes.modern-theme .splitpanes__pane {
@@ -107,5 +108,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  s-view {
+    display: block;
+    width: 100%;
+  }
+  s-panes {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  s-pane {
+    display: block;
+    width: calc(calc(100% - 300px) / 2);
+    flex-shrink: 0;
+    height: 100%;
+  }
+
+  .open {
+    transform: translateX(0);
+    /* margin-left: 0%;
+    transition: margin-left 0.35s ease; */
+    transition: transform 0.35s ease;
+  }
+  .closed {
+    transform: translateX(calc(calc(100% - 300px) / -2));
+    /* margin-left: -33.33%;
+    transition: margin-left 0.35s ease; */
+    transition: transform 0.35s ease;
   }
 </style>

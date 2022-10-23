@@ -5,6 +5,7 @@
   import { quintOut } from "svelte/easing";
 
   import Color from "colorjs.io";
+  import { highContrastColor } from "~/utils/highContrastColor";
 
   export let character: Character;
   export let isSelected: boolean = undefined;
@@ -17,12 +18,6 @@
 
   let fgColor;
   $: fgColor = highContrastColor(bgColor);
-
-  function highContrastColor(hexColor: string) {
-    const color = new Color(hexColor);
-    if (color.lch.l >= 60) return "#333";
-    else return "#efefef";
-  }
 
   function darkerColor(hexColor: string) {
     const color = new Color(hexColor);
