@@ -43,6 +43,10 @@
   function onKeydown(event) {
     if (event.key === "Escape") {
       dispatch("close");
+    } else if (event.key === "ArrowLeft" && message === "") {
+      dispatch("prev");
+    } else if (event.key === "ArrowRight" && message === "") {
+      dispatch("next");
     } else if (
       (event.key === "Enter" || event.key === "Return") &&
       !event.shiftKey

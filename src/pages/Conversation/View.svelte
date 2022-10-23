@@ -11,9 +11,22 @@
   import Stage from "./Stage.svelte";
   import Library from "./Library.svelte";
   import Persona from "./Persona.svelte";
+  import { characters } from "~/stores/characters";
 
   let libraryOpen = false;
   let chatInput;
+
+  function nextCharacter(plus: number = 1) {
+    let found = null;
+    $selectedCharacters.forEach((character, i) => {
+      if ($me === character) found = i;
+    });
+    if (found !== null) {
+      let i = found + plus;
+      if (i < 0) i += $selectedCharacters.length;
+      $me = $selectedCharacters[i % $selectedCharacters.length];
+    }
+  }
 
   // Inspiring UIs:
   // https://i.pinimg.com/originals/92/e8/29/92e829bf34dd6f30b34136e8381ee696.png
@@ -49,7 +62,12 @@
       <s-chat>
         <History />
         {#if $me}
-          <ChatInput bind:this={chatInput} on:close />
+          <ChatInput
+            bind:this={chatInput}
+            on:close
+            on:prev={() => nextCharacter(-1)}
+            on:next={() => nextCharacter(1)}
+          />
         {:else}
           <s-no-persona>
             <p>Add one or more personas from the Library to begin chat</p>
