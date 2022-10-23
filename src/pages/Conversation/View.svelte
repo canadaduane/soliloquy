@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Splitpanes, Pane } from "svelte-splitpanes";
+
   import { selectedCharacters } from "~/stores/selectedCharacters";
   import { me } from "~/stores/me";
 
@@ -6,7 +8,10 @@
   import ChatInput from "./ChatInput.svelte";
   import TopExpand from "./TopExpand.svelte";
   import Persona from "./Persona.svelte";
-  import { characters } from "~/stores/characters";
+  import Button from "~/kit/Button.svelte";
+  import Library from "./Library.svelte";
+
+  let libraryOpen = false;
 
   // Inspiring UIs:
   // https://i.pinimg.com/originals/92/e8/29/92e829bf34dd6f30b34136e8381ee696.png
@@ -14,11 +19,16 @@
   // https://cdn.dribbble.com/users/870342/screenshots/6075713/whatsapp_dark_mode_home___chat_4x.jpg
 </script>
 
-<TopExpand />
+<!-- <TopExpand /> -->
 
-<s-conversation>
-  <s-left>
-    <s-left-column>
+<Splitpanes class="modern-theme" style="height: 100%">
+  {#if libraryOpen}
+    <Pane>
+      <Library />
+    </Pane>
+  {/if}
+  <Pane minSize={16.65}>
+    <s-stage>
       {#each $selectedCharacters as character}
         <Persona
           {character}
@@ -26,98 +36,76 @@
           on:click={() => ($me = character)}
         />
       {/each}
-    </s-left-column>
-  </s-left>
-  <s-middle>
-    <History />
-    {#if $me}
-      <ChatInput on:close />
-    {:else}
-      <s-no-persona> Choose a persona to begin</s-no-persona>
-    {/if}
-  </s-middle>
-  <s-right>
-    {#if $me?.description}
+    </s-stage>
+    <Button on:click={() => (libraryOpen = !libraryOpen)}>Lib</Button>
+  </Pane>
+  <Pane minSize={33.3}>
+    <s-chat>
+      <History />
+      {#if $me}
+        <ChatInput on:close />
+      {:else}
+        <s-no-persona> Choose a persona to begin</s-no-persona>
+      {/if}
+    </s-chat>
+  </Pane>
+  {#if !libraryOpen}
+    <Pane>
       {$me?.description}
-    {/if}
-  </s-right>
-</s-conversation>
+    </Pane>
+  {/if}
+</Splitpanes>
 
-<style>
-  s-conversation {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-
-    margin-top: 60px;
-    height: calc(100vh - 60px);
+<style global>
+  .splitpanes.modern-theme .splitpanes__pane {
+    background-color: var(--bg1);
   }
-
-  s-middle,
-  s-left,
-  s-right {
-    margin: 6px;
-    width: 300px;
-    min-height: 240px;
-  }
-
-  s-middle {
+  .splitpanes.modern-theme .splitpanes__splitter {
+    background-color: var(--bg2);
     position: relative;
-
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    flex-grow: 0;
-
-    height: calc(100vh - 95px);
-    max-height: 650px;
-
-    border: 2px solid #1277d6;
-    border-radius: 6px;
+  }
+  .splitpanes.modern-theme .splitpanes__splitter:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: opacity 0.4s;
+    background-color: var(--blue);
+    opacity: 0;
+    z-index: 1;
+  }
+  .splitpanes.modern-theme .splitpanes__splitter:hover:before {
+    opacity: 1;
+  }
+  .splitpanes.modern-theme .splitpanes__splitter.splitpanes__splitter__active {
+    z-index: 2;
+    /* Fix an issue of overlap fighting with a near hovered splitter */
+  }
+  .modern-theme.splitpanes--vertical > .splitpanes__splitter {
+    border-left: none;
+  }
+  .modern-theme.splitpanes--vertical > .splitpanes__splitter:before {
+    left: -3px;
+    right: -3px;
+    height: 100%;
+    cursor: col-resize;
+  }
+  .modern-theme.splitpanes--horizontal > .splitpanes__splitter:before {
+    top: -3px;
+    bottom: -3px;
+    width: 100%;
+    cursor: row-resize;
   }
 
-  s-left {
+  s-chat {
     display: block;
-    overflow-y: auto;
-
-    max-height: 600px;
+    position: relative;
+    height: 100%;
   }
-  s-left-column {
+
+  s-stage {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  s-right {
-    border-radius: 6px;
-    background-color: #555;
-    padding: 8px;
-    align-self: flex-end;
-    margin-bottom: 16px;
-  }
-
-  s-no-persona {
-    color: #ccc;
-    margin: 12px auto;
-    font-size: 18px;
-  }
-
-  @media (max-width: 660px) {
-    s-conversation {
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-items: center;
-      height: auto;
-    }
-
-    s-left {
-      order: 1;
-    }
-
-    s-right {
-      order: 2;
-    }
   }
 </style>

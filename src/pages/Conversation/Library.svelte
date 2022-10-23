@@ -1,17 +1,19 @@
 <script lang="ts">
   import type { Character } from "../../types";
 
+  import { fly } from "svelte/transition";
   import IoIosAdd from "svelte-icons/io/IoIosAdd.svelte";
 
-  import { characters } from "../../stores/characters";
+  import { characters, makeCharacter } from "../../stores/characters";
   import { me } from "../../stores/me";
 
-  import TopDrawer from "../../kit/TopDrawer.svelte";
   import Icon from "../../kit/Icon.svelte";
 
   import Persona from "./Persona.svelte";
 
-  export let open = false;
+  const plusCharacter = makeCharacter({
+    name: "Add Character",
+  });
 
   function addCharacter() {
     const newCharacter: Character = {
@@ -35,45 +37,41 @@
   };
 </script>
 
-<s-top>
-  <TopDrawer {open}>
-    <s-drawer>
+<s-library>
+  <s-title>Persona Library</s-title>
+  <s-container>
+    <s-scroll>
       {#each $characters as character}
         <Persona {character} on:click={clickPersona(character)} />
       {/each}
-      <s-add-button role="button" on:click={addCharacter}>
-        <Icon size={48}>
-          <IoIosAdd />
-        </Icon>
-      </s-add-button>
-    </s-drawer>
-  </TopDrawer>
-</s-top>
+      <Persona character={plusCharacter} on:click={addCharacter} />
+    </s-scroll>
+  </s-container>
+</s-library>
 
 <style>
-  s-top {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
+  s-title {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px auto;
+    text-align: center;
   }
 
-  s-drawer {
+  s-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow-y: auto;
+    margin: 0 12px;
+  }
+
+  s-scroll {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-
-    max-height: 436px;
-    overflow-y: scroll;
-  }
-
-  s-add-button {
-    display: block;
-    cursor: pointer;
-  }
-
-  s-add-button:hover {
-    background-color: #777;
-    border-radius: 6px;
+    justify-content: center;
   }
 </style>

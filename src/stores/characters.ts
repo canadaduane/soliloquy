@@ -8,7 +8,7 @@ const lg = 0.65; // lightness
 const ch = 0.1; // chroma
 const step = 360 / 12; // divide the color space into 12
 
-function makeCharacter(traits: {
+export function makeCharacter(traits: {
   name: string;
   color?: string;
   image?: string;

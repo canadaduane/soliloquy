@@ -36,7 +36,7 @@
 
 <s-profile
   style="--bg: {bgColor}; --bg-darker: {bgDarker}; --color: {fgColor}"
-  transition:fly={{ opacity: 1, y: -160, easing: quintOut }}
+  in:fly={{ opacity: 1, y: -160, easing: quintOut }}
   class:outlined={isSelected ?? character.isSelected}
   on:click
 >
