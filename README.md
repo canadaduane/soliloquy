@@ -17,9 +17,14 @@ the opportunity to begin a conversation.
 to the internet. You can save conversations, or delete them for privacy.
 It's up to you.
 
+<img src="docs/screenshot1.webp">
+<img src="docs/screenshot2.webp">
+<img src="docs/screenshot3.webp">
+
 ## Status
 
-Currently under development
+`v0.1.0`: Basic conversation functionality exists, with the ability to choose
+personas and switch among them. Only the 12 preset personas work at this time.
 
 ## Will it run on my computer?
 
