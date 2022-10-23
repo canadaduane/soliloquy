@@ -72,7 +72,7 @@
     justify-content: center;
     align-items: flex-end;
 
-    background-color: #383838;
+    background-color: var(--bg2);
     border-radius: 4px;
     width: 100%;
   }
@@ -100,11 +100,11 @@
     flex-shrink: 0;
     flex-grow: 0;
 
-    background-color: #fe5f88;
-    color: white;
+    background-color: var(--green-alt);
+    color: var(--fg2);
   }
   r-send:hover {
-    background-color: #c7446c;
-    color: #ddd;
+    background-color: var(--green-alt);
+    color: var(--fg1);
   }
 </style>

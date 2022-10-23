@@ -1,9 +1,10 @@
 <script lang="ts">
   export let use = (_) => {};
   export let buttonEl = null;
+  export let style: "none" | "round" = "round";
 </script>
 
-<button on:click bind:this={buttonEl} use:use>
+<button class:none={style === "none"} on:click bind:this={buttonEl} use:use>
   <slot />
 </button>
 
@@ -16,8 +17,9 @@
 
     padding: 8px 16px;
 
-    background-color: #fe5f88;
-    color: white;
+    background-color: var(--red);
+    color: var(--bg2);
+    font-weight: bold;
 
     font-size: medium;
 
@@ -25,7 +27,18 @@
   }
 
   button:hover {
-    background-color: #c7446c;
-    color: #ddd;
+    background-color: var(--red-alt);
+    color: var(--bg1);
+  }
+
+  button.none {
+    background-color: transparent;
+    color: var(--fg1);
+    font-size: small;
+    font-weight: normal;
+  }
+  button.none:hover {
+    background-color: transparent;
+    color: var(--fg2);
   }
 </style>

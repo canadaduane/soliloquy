@@ -4,7 +4,7 @@ import { writable, type Writable } from "svelte/store";
 import Color from "colorjs.io";
 
 let color = 0;
-const lg = 0.9; // lightness
+const lg = 0.65; // lightness
 const ch = 0.1; // chroma
 const step = 360 / 12; // divide the color space into 12
 
