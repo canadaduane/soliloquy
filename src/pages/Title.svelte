@@ -4,6 +4,7 @@
 
   import IoIosInformationCircleOutline from "svelte-icons/io/IoIosInformationCircleOutline.svelte";
   import IoIosArrowForward from "svelte-icons/io/IoIosArrowForward.svelte";
+  import IoIosArrowRoundBack from "svelte-icons/io/IoIosArrowRoundBack.svelte";
 
   import Icon from "../kit/Icon.svelte";
   import Button from "../kit/Button.svelte";
@@ -45,9 +46,9 @@
         </p>
 
         <p>
-          Soliloquy lets you create pairs, or groups of "people" that can be
-          stored as a set. You can recall any set to the stage, where you have
-          the opportunity to begin a conversation.
+          Soliloquy lets you create pairs or groups of "personas" (characters)
+          that can be part of a conversation. You can recall any set to the
+          stage, where you have the opportunity to begin a conversation.
         </p>
 
         <p>
@@ -56,18 +57,35 @@
           It's up to you.
         </p>
 
-        <p>By Duane Johnson and Rella Johnson &copy; 2022</p>
+        <s-copyright>
+          <a href="https://github.com/canadaduane/soliloquy">Soliloquy</a> is
+          open source software&mdash;see the
+          <a href="https://github.com/canadaduane/soliloquy/blob/main/LICENSE">
+            MIT License.
+          </a>
+          <br /> Concept and Design by Duane Johnson and Rella Johnson &copy; 2022
+        </s-copyright>
       </s-info-paragraph>
+
+      <s-close>
+        <Button on:click={() => (moreInfo = !moreInfo)}>
+          <s-icon>
+            <IoIosArrowRoundBack />
+          </s-icon>
+          Back
+        </Button>
+      </s-close>
     </s-info>
+  {:else}
+    <s-footer>
+      <Button style="none" on:click={() => (moreInfo = !moreInfo)}>
+        <s-icon>
+          <IoIosInformationCircleOutline />
+        </s-icon>
+        Learn more
+      </Button>
+    </s-footer>
   {/if}
-  <s-footer>
-    <Button style="none" on:click={() => (moreInfo = !moreInfo)}>
-      <s-icon>
-        <IoIosInformationCircleOutline />
-      </s-icon>
-      Learn more
-    </Button>
-  </s-footer>
 </s-container>
 
 <style>
@@ -75,9 +93,10 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 0 90px;
     justify-content: center;
-    padding-bottom: 60px;
+
+    padding: 60px 90px;
+    min-height: calc(100vh - 120px);
   }
   s-container > * {
     flex-shrink: 0;
@@ -133,6 +152,20 @@
     background-color: var(--bg1);
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+  }
+
+  s-copyright {
+    display: block;
+    padding: 12px;
+    border: 1px solid var(--red);
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  s-close {
+    display: flex;
+    justify-content: center;
   }
 
   s-info {

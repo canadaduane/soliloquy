@@ -1,21 +1,30 @@
 <script lang="ts">
-  import Program from "./Program.svelte";
+  import type { Page, Character } from "./types";
+
+  import Title from "./pages/Title.svelte";
+  import Conversation from "./pages/Conversation/View.svelte";
+  import Casting from "./pages/Casting/View.svelte";
+
+  import { me } from "~/stores/me";
+
+  let page: Page = "title";
+  let castingCharacter: Character;
+
+  function toConversation({ detail }) {
+    if (page != "conversation") page = "conversation";
+    $me = detail.character;
+  }
+
+  function toCasting({ detail }) {
+    if (page != "casting") page = "casting";
+    castingCharacter = detail.character;
+  }
 </script>
 
-<main>
-  <Program />
-</main>
-
-<style>
-  main {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    /* font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-</style>
+{#if page === "title"}
+  <Title on:begin={() => (page = "conversation")} />
+{:else if page === "conversation"}
+  <Conversation on:toCasting={toCasting} on:toConversation={toConversation} />
+{:else if page === "casting"}
+  <Casting character={castingCharacter} />
+{/if}
