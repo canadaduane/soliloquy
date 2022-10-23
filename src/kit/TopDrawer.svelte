@@ -35,6 +35,7 @@
   s-content {
     display: block;
     background-color: #555;
+    border-bottom: 1px solid black;
   }
 
   s-content > div {
@@ -43,9 +44,8 @@
 
   s-tab {
     display: block;
-    background: #555;
     margin: 0 auto;
-    padding: 0.625rem 2rem;
+    padding: 0.625rem 3rem;
     position: relative;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -54,67 +54,54 @@
     /* Fix flickering during slide animation */
     top: -1px;
     border-top: 1px solid #555;
+    background: #333;
   }
 
-  s-tab:after,
-  s-tab:before {
-    content: "";
-    height: 20px;
-    width: 20px;
+  s-tab::before {
     background: #555;
+    content: "";
     position: absolute;
-    top: -1px;
-    right: -20px;
-    z-index: 1;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    height: 100%;
+    display: block;
+    z-index: -1;
   }
 
-  s-tab:before {
-    right: auto;
-    left: -20px;
+  s-tab,
+  s-tab::before {
+    /* https://www.cssportal.com/css-clip-path-generator/ */
+    clip-path: polygon(
+      4% 0%,
+      4% 24%,
+      6% 26%,
+      8% 28%,
+      10% 38%,
+      13% 70%,
+      15% 82%,
+      17% 89%,
+      19% 93%,
+      22% 95%,
+      33% 98%,
+      43% 100%,
+      57% 100%,
+      67% 98%,
+      78% 95%,
+      81% 93%,
+      83% 89%,
+      85% 82%,
+      87% 70%,
+      90% 38%,
+      92% 28%,
+      94% 26%,
+      96% 24%,
+      96% 0%
+    );
   }
 
   s-tab span {
-    color: #ccc;
+    color: #333;
+    text-shadow: 0px -1px 0px #222, 0px 0.5px 0px #888;
   }
-
-  s-tab span:after,
-  s-tab span:before {
-    content: "";
-    height: 40px;
-    width: 40px;
-    background: #272727;
-    position: absolute;
-    top: 0;
-    right: -40px;
-    z-index: 2;
-    border-radius: 50%;
-  }
-
-  s-tab span:before {
-    right: auto;
-    left: -40px;
-  }
-
-  /* s-tab {
-    position: relative;
-
-    display: block;
-    margin: 0 auto;
-    height: 20px;
-
-    padding: 6px 4px 4px 4px;
-    border-bottom: 1px solid #555;
-  }
-  s-tab::before {
-    position: absolute;
-    top: 10px;
-    left: -20px;
-    content: "";
-    border-right: 1px solid #555;
-    transform: skew(35deg);
-    display: block;
-    width: 20px;
-    height: 20px;
-    z-index: -1;
-  } */
 </style>
