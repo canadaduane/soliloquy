@@ -47,10 +47,10 @@
       <Icon><IoIosClose /></Icon>
     </Button>
   </s-close>
-  <s-info>
-    Click one or more personas to add or remove from the conversation.
-  </s-info>
   <s-container>
+    <s-info>
+      Click one or more personas to add or remove from the conversation.
+    </s-info>
     <s-scroll>
       {#each $characters as character (character.name)}
         <Persona {character} on:click={clickPersona(character)} />
