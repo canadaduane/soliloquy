@@ -17,7 +17,6 @@
   };
 
   const removeCharacterFromStage = (character: Character) => () => {
-    console.log("remove", character, $characters);
     character.isSelected = false;
 
     if ($me === character) {

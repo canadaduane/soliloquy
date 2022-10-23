@@ -26,7 +26,6 @@
           content: text,
           timestamp: new Date(),
         };
-        console.log("message", JSON.stringify(message));
         msgs.push(message);
         return msgs;
       });
@@ -34,7 +33,6 @@
   }
 
   function sendMessage() {
-    console.log(JSON.stringify(message));
     const htmlMsg = cleanHtml(message).replace("\n", "<br/>");
     addMessage(htmlMsg);
     message = "";
