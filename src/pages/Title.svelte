@@ -6,7 +6,6 @@
   import IoIosArrowForward from "svelte-icons/io/IoIosArrowForward.svelte";
 
   import Icon from "../kit/Icon.svelte";
-  import IconButton from "../kit/IconButton.svelte";
   import Button from "../kit/Button.svelte";
 
   const dispatch = createEventDispatcher();
@@ -28,13 +27,6 @@
       </s-arrow>
     </Button>
   </s-begin>
-  <s-footer>
-    <s-icon-more>
-      <IconButton size={24} on:click={() => (moreInfo = !moreInfo)}>
-        <IoIosInformationCircleOutline />
-      </IconButton>
-    </s-icon-more>
-  </s-footer>
   {#if moreInfo}
     <s-info transition:slide|local>
       <s-info-heading>What is this?</s-info-heading>
@@ -63,9 +55,19 @@
           to the internet. You can save conversations, or delete them for privacy.
           It's up to you.
         </p>
+
+        <p>By Duane Johnson and Rella Johnson &copy; 2022</p>
       </s-info-paragraph>
     </s-info>
   {/if}
+  <s-footer>
+    <Button style="none" on:click={() => (moreInfo = !moreInfo)}>
+      <s-icon>
+        <IoIosInformationCircleOutline />
+      </s-icon>
+      Learn more
+    </Button>
+  </s-footer>
 </s-container>
 
 <style>
@@ -74,8 +76,11 @@
     align-items: center;
     flex-direction: column;
     padding: 0 90px;
-    height: 100vh;
     justify-content: center;
+    padding-bottom: 60px;
+  }
+  s-container > * {
+    flex-shrink: 0;
   }
   s-image {
     display: block;
@@ -95,14 +100,19 @@
   s-subtitle {
     display: flex;
     align-items: center;
+
     font-size: large;
     font-weight: 100;
     color: #ccc;
+
+    margin-bottom: 6px;
   }
 
-  s-icon-more {
+  s-icon {
     display: block;
-    color: #777;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
   }
 
   s-begin {
@@ -115,8 +125,14 @@
     padding: 2px 0px 2px 4px;
   }
 
-  s-icon-more:hover {
-    color: white;
+  s-footer {
+    position: fixed;
+    bottom: 0;
+
+    /* Solid bg in case it's a short window */
+    background-color: var(--bg1);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
   }
 
   s-info {
@@ -131,7 +147,7 @@
   }
   s-info-paragraph {
     display: block;
-    margin: 12px 0;
+    margin: 12px 0 24px 0;
     font-size: medium;
     font-weight: 100;
     color: #ccc;
