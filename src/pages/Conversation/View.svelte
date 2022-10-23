@@ -69,47 +69,7 @@
   </s-panes>
 </s-view>
 
-<style global>
-  .splitpanes.modern-theme .splitpanes__pane {
-    background-color: var(--bg1);
-  }
-  .splitpanes.modern-theme .splitpanes__splitter {
-    background-color: var(--bg2);
-    position: relative;
-  }
-  .splitpanes.modern-theme .splitpanes__splitter:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: opacity 0.4s;
-    background-color: var(--blue);
-    opacity: 0;
-    z-index: 1;
-  }
-  .splitpanes.modern-theme .splitpanes__splitter:hover:before {
-    opacity: 1;
-  }
-  .splitpanes.modern-theme .splitpanes__splitter.splitpanes__splitter__active {
-    z-index: 2;
-    /* Fix an issue of overlap fighting with a near hovered splitter */
-  }
-  .modern-theme.splitpanes--vertical > .splitpanes__splitter {
-    border-left: none;
-  }
-  .modern-theme.splitpanes--vertical > .splitpanes__splitter:before {
-    left: -3px;
-    right: -3px;
-    height: 100%;
-    cursor: col-resize;
-  }
-  .modern-theme.splitpanes--horizontal > .splitpanes__splitter:before {
-    top: -3px;
-    bottom: -3px;
-    width: 100%;
-    cursor: row-resize;
-  }
-
+<style>
   s-chat {
     display: block;
     position: relative;
