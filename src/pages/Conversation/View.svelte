@@ -101,7 +101,11 @@
   s-chat {
     display: block;
     position: relative;
-    height: 100%;
+    height: calc(100vh - 28px);
+    border: 2px solid var(--bg3);
+    margin: 12px 0;
+    border-radius: 18px;
+    overflow: hidden;
   }
 
   s-stage {
@@ -125,6 +129,11 @@
     width: calc(calc(100% - 300px) / 2);
     flex-shrink: 0;
     height: 100%;
+  }
+
+  s-no-persona {
+    display: block;
+    text-align: center;
   }
 
   .open {

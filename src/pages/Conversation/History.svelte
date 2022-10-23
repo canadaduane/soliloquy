@@ -33,7 +33,7 @@
           color={message.character.color}
           side={message.character === $me ? "right" : "left"}
         >
-          {message.content}
+          {@html message.content}
         </Message>
       {/each}
     </s-scrollable>
@@ -46,10 +46,10 @@
     flex-direction: column;
     flex-grow: 1;
 
-    /* height: calc(100% - 54px); */
+    height: calc(100% - 52px);
     margin-bottom: 60px;
 
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   s-scrollable {

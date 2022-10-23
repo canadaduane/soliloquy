@@ -62,7 +62,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 46px);
     overflow-y: auto;
     margin: 0 12px;
   }

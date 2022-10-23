@@ -1,8 +1,10 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
+  import IoMdSend from "svelte-icons/io/IoMdSend.svelte";
 
   import { messages } from "~/stores/messages";
   import { me } from "~/stores/me";
+  import { cleanHtml } from "~/utils/cleanHtml";
 
   const dispatch = createEventDispatcher();
 
@@ -29,7 +31,7 @@
 
   function sendMessage() {
     console.log(JSON.stringify(message));
-    const htmlMsg = message.replace("\n", "<br/>");
+    const htmlMsg = cleanHtml(message).replace("\n", "<br/>");
     addMessage(htmlMsg);
     message = "";
   }
@@ -59,7 +61,11 @@
     bind:textContent={message}
     bind:this={messageEl}
   />
-  <r-send on:click={sendMessage} role="button" />
+  <r-send on:click={sendMessage} role="button">
+    <r-send-icon>
+      <IoMdSend />
+    </r-send-icon>
+  </r-send>
 </r-chat-input>
 
 <style>
@@ -87,24 +93,33 @@
     max-height: 150px;
     width: 100%;
 
-    padding: 4px 8px;
+    padding: 4px 8px 4px 16px;
 
     overflow-y: auto;
     white-space: pre-line;
   }
 
   r-send {
-    display: block;
-    width: 48px;
-    height: 48px;
+    display: flex;
     flex-shrink: 0;
     flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
 
     background-color: var(--green-alt);
-    color: var(--fg2);
+    color: var(--bg1);
+  }
+
+  r-send-icon {
+    display: block;
+    width: 32px;
+    height: 32px;
   }
   r-send:hover {
-    background-color: var(--green-alt);
+    background-color: var(--green);
     color: var(--fg1);
   }
 </style>
