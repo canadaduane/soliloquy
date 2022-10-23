@@ -15,6 +15,7 @@
   export let character: Character;
   export let size: "small" | "normal" = "normal";
   export let isSelected: boolean = undefined;
+  export let showClose: boolean = false;
 
   const dispatch = createEventDispatcher();
 
@@ -44,11 +45,13 @@
   class:small={size === "small"}
   on:click
 >
-  <s-close>
-    <Button style="none" on:click={() => dispatch("close")}>
-      <Icon><IoIosClose /></Icon>
-    </Button>
-  </s-close>
+  {#if showClose}
+    <s-close>
+      <Button style="none" on:click={() => dispatch("close")}>
+        <Icon><IoIosClose /></Icon>
+      </Button>
+    </s-close>
+  {/if}
   <s-thumbnail>
     {#if character.image}
       <img src={character.image} alt="profile pic" />

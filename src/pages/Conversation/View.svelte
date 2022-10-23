@@ -10,6 +10,7 @@
   import ChatInput from "./ChatInput.svelte";
   import Stage from "./Stage.svelte";
   import Library from "./Library.svelte";
+  import Persona from "./Persona.svelte";
 
   let libraryOpen = false;
   let chatInput;
@@ -31,7 +32,7 @@
       {#if $selectedCharacters.length > 0}
         <Stage on:chosen={() => chatInput?.focus()} />
       {:else}
-        <s-empty-stage> No one, yet! </s-empty-stage>
+        <s-empty-msg> No one, yet! </s-empty-msg>
       {/if}
       <s-add-button>
         <Button on:click={() => (libraryOpen = !libraryOpen)}>
@@ -58,8 +59,16 @@
     </s-pane>
 
     <s-pane>
-      Hello!
-      {$me?.description}
+      <s-me>
+        {#if $me}
+          <Persona character={$me} />
+          <s-desc>
+            {$me.description}
+          </s-desc>
+        {:else}
+          <s-empty-msg> No persona selected. </s-empty-msg>
+        {/if}
+      </s-me>
     </s-pane>
   </s-panes>
 </s-view>
@@ -77,12 +86,12 @@
 
   s-view {
     display: block;
+    overflow: hidden;
     width: 100%;
   }
   s-panes {
     display: flex;
     width: 100%;
-    overflow: hidden;
   }
 
   s-pane {
@@ -111,11 +120,26 @@
     margin: 12px;
   }
 
-  s-empty-stage {
+  s-empty-msg {
     display: block;
     text-align: center;
     color: var(--fg1);
     margin: 24px 0;
+  }
+
+  s-me {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding-top: 36px;
+  }
+
+  s-desc {
+    display: block;
+    color: var(--fg2);
+    padding: 8px 12px;
   }
 
   .open {
