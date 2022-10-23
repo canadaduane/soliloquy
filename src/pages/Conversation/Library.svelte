@@ -1,15 +1,18 @@
 <script lang="ts">
   import type { Character } from "../../types";
 
-  import { fly } from "svelte/transition";
-  import IoIosAdd from "svelte-icons/io/IoIosAdd.svelte";
+  import { createEventDispatcher } from "svelte";
+  import IoIosClose from "svelte-icons/io/IoIosClose.svelte";
 
   import { characters, makeCharacter } from "../../stores/characters";
   import { me } from "../../stores/me";
 
-  import Icon from "../../kit/Icon.svelte";
-
   import Persona from "./Persona.svelte";
+  import Title from "~/kit/Title.svelte";
+  import Button from "~/kit/Button.svelte";
+  import Icon from "~/kit/Icon.svelte";
+
+  const dispatch = createEventDispatcher();
 
   const plusCharacter = makeCharacter({
     name: "Add Character",
@@ -38,10 +41,18 @@
 </script>
 
 <s-library>
-  <s-title>Persona Library</s-title>
+  <Title>Library</Title>
+  <s-close>
+    <Button style="none" on:click={() => dispatch("close")}>
+      <Icon><IoIosClose /></Icon>
+    </Button>
+  </s-close>
+  <s-info>
+    Click one or more personas to add or remove from the conversation.
+  </s-info>
   <s-container>
     <s-scroll>
-      {#each $characters as character}
+      {#each $characters as character (character.name)}
         <Persona {character} on:click={clickPersona(character)} />
       {/each}
       <Persona character={plusCharacter} on:click={addCharacter} />
@@ -50,14 +61,6 @@
 </s-library>
 
 <style>
-  s-title {
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 12px auto;
-    text-align: center;
-  }
-
   s-container {
     display: flex;
     flex-direction: column;
@@ -73,5 +76,21 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+  }
+
+  s-library {
+    position: relative;
+  }
+
+  s-close {
+    position: absolute;
+    top: -45px;
+  }
+
+  s-info {
+    color: var(--fg1);
+    display: block;
+    padding: 8px 32px 24px 32px;
+    text-align: center;
   }
 </style>

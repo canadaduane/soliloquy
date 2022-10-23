@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Page, Character } from "./types";
 
-  import Title from "./pages/Title.svelte";
+  import TitlePage from "./pages/TitlePage.svelte";
   import Conversation from "./pages/Conversation/View.svelte";
   import Casting from "./pages/Casting/View.svelte";
 
@@ -22,7 +22,7 @@
 </script>
 
 {#if page === "title"}
-  <Title on:begin={() => (page = "conversation")} />
+  <TitlePage on:begin={() => (page = "conversation")} />
 {:else if page === "conversation"}
   <Conversation on:toCasting={toCasting} on:toConversation={toConversation} />
 {:else if page === "casting"}

@@ -4,10 +4,12 @@
   import { selectedCharacters } from "~/stores/selectedCharacters";
   import { me } from "~/stores/me";
 
+  import Button from "~/kit/Button.svelte";
+  import Title from "~/kit/Title.svelte";
+
   import History from "./History.svelte";
   import ChatInput from "./ChatInput.svelte";
   import Persona from "./Persona.svelte";
-  import Button from "~/kit/Button.svelte";
   import Library from "./Library.svelte";
 
   let libraryOpen = false;
@@ -23,20 +25,30 @@
 <s-view>
   <s-panes class:open={libraryOpen} class:closed={!libraryOpen}>
     <s-pane>
-      <Library />
+      <Library on:close={() => (libraryOpen = false)} />
     </s-pane>
 
     <s-pane>
-      <Button on:click={() => (libraryOpen = !libraryOpen)}>Library</Button>
+      <Title>In this Conversation</Title>
       <s-stage>
-        {#each $selectedCharacters as character}
+        {#each $selectedCharacters as character (character.name)}
           <Persona
             {character}
+            size="small"
             isSelected={character === $me}
             on:click={() => ($me = character)}
           />
         {/each}
       </s-stage>
+      <s-add-button>
+        <Button on:click={() => (libraryOpen = !libraryOpen)}>
+          {#if libraryOpen}
+            Close Library
+          {:else}
+            Add from Library
+          {/if}
+        </Button>
+      </s-add-button>
     </s-pane>
 
     <s-pane style="width:300px">
@@ -110,8 +122,11 @@
 
   s-stage {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
+    padding: 0 16px;
   }
 
   s-view {
@@ -134,6 +149,12 @@
   s-no-persona {
     display: block;
     text-align: center;
+  }
+
+  s-add-button {
+    display: flex;
+    justify-content: center;
+    margin: 12px;
   }
 
   .open {

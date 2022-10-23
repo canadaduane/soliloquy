@@ -8,6 +8,7 @@
   import { highContrastColor } from "~/utils/highContrastColor";
 
   export let character: Character;
+  export let size: "small" | "normal" = "normal";
   export let isSelected: boolean = undefined;
 
   let bgColor;
@@ -33,6 +34,7 @@
   style="--bg: {bgColor}; --bg-darker: {bgDarker}; --color: {fgColor}"
   in:fly={{ opacity: 1, y: -160, easing: quintOut }}
   class:outlined={isSelected ?? character.isSelected}
+  class:small={size === "small"}
   on:click
 >
   <s-thumbnail>
@@ -65,6 +67,12 @@
 
     cursor: pointer;
   }
+  s-profile.small {
+    width: 60px;
+    height: 80px;
+    border-radius: 6px;
+    padding-top: 12px;
+  }
 
   s-profile.outlined {
     border: 1px solid #333;
@@ -78,6 +86,9 @@
     margin-top: 12px;
     color: var(--color, inherit);
   }
+  .small s-name {
+    margin-top: 8px;
+  }
 
   s-thumbnail {
     display: block;
@@ -87,6 +98,11 @@
     border-radius: 100%;
     overflow: hidden;
     flex-shrink: 0;
+  }
+  .small s-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-width: 1px;
   }
 
   s-thumbnail > img {
