@@ -4,7 +4,12 @@
   export let style: "none" | "round" = "round";
 </script>
 
-<button class:none={style === "none"} on:click bind:this={buttonEl} use:use>
+<button
+  class:none={style === "none"}
+  on:click|stopPropagation
+  bind:this={buttonEl}
+  use:use
+>
   <slot />
 </button>
 

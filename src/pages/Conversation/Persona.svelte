@@ -3,13 +3,20 @@
 
   import { fly } from "svelte/transition";
   import { quintOut } from "svelte/easing";
+  import { createEventDispatcher } from "svelte";
 
   import Color from "colorjs.io";
+  import IoIosClose from "svelte-icons/io/IoIosClose.svelte";
+
   import { highContrastColor } from "~/utils/highContrastColor";
+  import Button from "~/kit/Button.svelte";
+  import Icon from "~/kit/Icon.svelte";
 
   export let character: Character;
   export let size: "small" | "normal" = "normal";
   export let isSelected: boolean = undefined;
+
+  const dispatch = createEventDispatcher();
 
   let bgColor;
   $: bgColor = character.color ?? "#FF9999";
@@ -37,6 +44,11 @@
   class:small={size === "small"}
   on:click
 >
+  <s-close>
+    <Button style="none" on:click={() => dispatch("close")}>
+      <Icon><IoIosClose /></Icon>
+    </Button>
+  </s-close>
   <s-thumbnail>
     {#if character.image}
       <img src={character.image} alt="profile pic" />
@@ -51,6 +63,7 @@
 
 <style>
   s-profile {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,5 +129,18 @@
     width: 100%;
     height: 100%;
     background-color: var(--bg-darker);
+  }
+
+  s-close {
+    position: absolute;
+    top: -6px;
+    right: -14px;
+  }
+  s-close :global(button) {
+    color: var(--bg2) !important;
+  }
+  .small s-close {
+    top: -12px;
+    right: -20px;
   }
 </style>

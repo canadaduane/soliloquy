@@ -11,6 +11,10 @@
   let messageEl;
   let message;
 
+  export function focus() {
+    messageEl.focus();
+  }
+
   function addMessage(text) {
     if (text.match(/^\s*$/)) {
       dispatch("close");
