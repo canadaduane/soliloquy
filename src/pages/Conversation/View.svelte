@@ -1,6 +1,8 @@
 <script lang="ts">
   import { me } from "~/stores/me";
 
+  import { selectedCharacters } from "~/stores/selectedCharacters";
+
   import Button from "~/kit/Button.svelte";
   import Title from "~/kit/Title.svelte";
 
@@ -26,7 +28,11 @@
 
     <s-pane>
       <Title>In this Conversation</Title>
-      <Stage on:chosen={() => chatInput?.focus()} />
+      {#if $selectedCharacters.length > 0}
+        <Stage on:chosen={() => chatInput?.focus()} />
+      {:else}
+        <s-empty-stage> No one, yet! </s-empty-stage>
+      {/if}
       <s-add-button>
         <Button on:click={() => (libraryOpen = !libraryOpen)}>
           {#if libraryOpen}
@@ -103,6 +109,13 @@
     display: flex;
     justify-content: center;
     margin: 12px;
+  }
+
+  s-empty-stage {
+    display: block;
+    text-align: center;
+    color: var(--fg1);
+    margin: 24px 0;
   }
 
   .open {
