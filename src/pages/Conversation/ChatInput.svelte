@@ -80,6 +80,8 @@
 
     background-color: var(--bg2);
     border-radius: 4px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
     width: 100%;
   }
 
@@ -111,6 +113,7 @@
 
     background-color: var(--green-alt);
     color: var(--bg1);
+    border-bottom-right-radius: 16px;
   }
 
   r-send-icon {
