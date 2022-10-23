@@ -11,7 +11,6 @@
   import Stage from "./Stage.svelte";
   import Library from "./Library.svelte";
   import Persona from "./Persona.svelte";
-  import { characters } from "~/stores/characters";
 
   let libraryOpen = false;
   let chatInput;
