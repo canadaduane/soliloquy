@@ -1,8 +1,4 @@
 <script lang="ts">
-  import type { Character } from "~/types";
-
-  import { selectedCharacters } from "~/stores/selectedCharacters";
-  import { characters } from "~/stores/characters";
   import { me } from "~/stores/me";
 
   import Button from "~/kit/Button.svelte";
@@ -10,7 +6,7 @@
 
   import History from "./History.svelte";
   import ChatInput from "./ChatInput.svelte";
-  import Persona from "./Persona.svelte";
+  import Stage from "./Stage.svelte";
   import Library from "./Library.svelte";
 
   let libraryOpen = false;
@@ -20,35 +16,7 @@
   // https://i.pinimg.com/originals/92/e8/29/92e829bf34dd6f30b34136e8381ee696.png
   // https://cdn.dribbble.com/users/2369119/screenshots/10492819/media/22dab10553c050ec60987c101ef6b452.png
   // https://cdn.dribbble.com/users/870342/screenshots/6075713/whatsapp_dark_mode_home___chat_4x.jpg
-
-  const chooseCharacter = (character: Character) => () => {
-    $me = character;
-    chatInput?.focus();
-  };
-
-  const removeCharacterFromStage = (character: Character) => () => {
-    console.log("remove", character, $characters);
-    character.isSelected = false;
-
-    if ($me === character) {
-      // Select the next available character as "me"
-      if ($selectedCharacters.length > 1) {
-        for (let selChar of $selectedCharacters) {
-          if (character !== selChar) {
-            $me = selChar;
-            break;
-          }
-        }
-      } else {
-        $me = null;
-      }
-    }
-
-    $characters = $characters;
-  };
 </script>
-
-<!-- <TopExpand /> -->
 
 <s-view>
   <s-panes class:open={libraryOpen} class:closed={!libraryOpen}>
@@ -58,17 +26,7 @@
 
     <s-pane>
       <Title>In this Conversation</Title>
-      <s-stage>
-        {#each $selectedCharacters as character (character.name)}
-          <Persona
-            {character}
-            size="small"
-            isSelected={character === $me}
-            on:click={chooseCharacter(character)}
-            on:close={removeCharacterFromStage(character)}
-          />
-        {/each}
-      </s-stage>
+      <Stage on:chosen={() => chatInput?.focus()} />
       <s-add-button>
         <Button on:click={() => (libraryOpen = !libraryOpen)}>
           {#if libraryOpen}
@@ -109,15 +67,6 @@
     margin: 12px 0;
     border-radius: 18px;
     overflow: hidden;
-  }
-
-  s-stage {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0 16px;
   }
 
   s-view {

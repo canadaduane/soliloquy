@@ -31,6 +31,7 @@
         <Message
           name={message.character.name}
           color={message.character.color}
+          image={message.character.image}
           side={message.character === $me ? "right" : "left"}
         >
           {@html message.content}
