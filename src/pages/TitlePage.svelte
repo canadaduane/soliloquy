@@ -6,18 +6,35 @@
   import IoIosArrowForward from "svelte-icons/io/IoIosArrowForward.svelte";
   import IoIosArrowRoundBack from "svelte-icons/io/IoIosArrowRoundBack.svelte";
 
-  import Icon from "../kit/Icon.svelte";
-  import Button from "../kit/Button.svelte";
+  import { messages } from "~/stores/messages";
+
+  import Icon from "~/kit/Icon.svelte";
+  import Button from "~/kit/Button.svelte";
 
   const dispatch = createEventDispatcher();
 
   let moreInfo = false;
+  let exported = null;
+
+  function exportConversation() {
+    exported = JSON.stringify(
+      $messages.map((msg) => [msg.character.name, msg.timestamp, msg.content]),
+      null,
+      2
+    );
+  }
 </script>
 
 <s-container>
-  <s-image />
-  <s-title>Soliloquy</s-title>
-  <s-subtitle> Give voice to every aspect of your intelligence </s-subtitle>
+  {#if !exported}
+    <s-image />
+    <s-title>Soliloquy</s-title>
+    <s-subtitle> Give voice to every aspect of your intelligence </s-subtitle>
+  {:else}
+    <s-title>Exported:</s-title>
+    <s-export contenteditable>{exported}</s-export>
+  {/if}
+
   <s-begin>
     <Button on:click={() => dispatch("begin")}>
       Begin
@@ -28,6 +45,13 @@
       </s-arrow>
     </Button>
   </s-begin>
+
+  {#if $messages.length > 0}
+    <s-begin>
+      <Button on:click={exportConversation}>Export Conversation</Button>
+    </s-begin>
+  {/if}
+
   {#if moreInfo}
     <s-info transition:slide|local>
       <s-info-heading>What is this?</s-info-heading>
@@ -142,6 +166,15 @@
   s-begin s-arrow {
     display: flex;
     padding: 2px 0px 2px 4px;
+  }
+
+  s-export {
+    display: block;
+    font-family: monospace;
+    max-height: 100px;
+    overflow-y: auto;
+    margin: 12px 0;
+    white-space: pre;
   }
 
   s-footer {

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+
   import { me } from "~/stores/me";
 
   import { selectedCharacters } from "~/stores/selectedCharacters";
@@ -11,6 +13,8 @@
   import Stage from "./Stage.svelte";
   import Library from "./Library.svelte";
   import Persona from "./Persona.svelte";
+
+  const dispatch = createEventDispatcher();
 
   let libraryOpen = false;
   let chatInput;
@@ -27,10 +31,11 @@
     }
   }
 
-  // Inspiring UIs:
-  // https://i.pinimg.com/originals/92/e8/29/92e829bf34dd6f30b34136e8381ee696.png
-  // https://cdn.dribbble.com/users/2369119/screenshots/10492819/media/22dab10553c050ec60987c101ef6b452.png
-  // https://cdn.dribbble.com/users/870342/screenshots/6075713/whatsapp_dark_mode_home___chat_4x.jpg
+  function onKey(event) {
+    if (event.key === "Escape") {
+      dispatch("return");
+    }
+  }
 </script>
 
 <s-view>
@@ -89,6 +94,8 @@
     </s-pane>
   </s-panes>
 </s-view>
+
+<svelte:window on:keypress={onKey} />
 
 <style>
   s-chat {
