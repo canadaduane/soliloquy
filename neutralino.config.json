@@ -1,6 +1,6 @@
 {
   "applicationId": "com.canadaduane.soliloquy",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "defaultMode": "window",
   "port": 8080,
   "documentRoot": "/build/",
@@ -22,7 +22,7 @@
       "minWidth": 400,
       "minHeight": 200,
       "icon": "/public/assets/soliloquy.png",
-      "enableInspector": true,
+      "enableInspector": false,
       "fullScreen": false,
       "alwaysOnTop": false,
       "borderless": false,

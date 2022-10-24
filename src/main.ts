@@ -3,7 +3,7 @@ import App from "./App.svelte";
 const app = new App({
   target: document.body,
 });
-console.log(Neutralino);
+// console.log(Neutralino);
 
 // Need to initialize Neutralino. If there are errors reltated to unknown or undefined variables
 // caused by this call (Like NL_PORT), it could be that neutralino.js isn't being loaded from
