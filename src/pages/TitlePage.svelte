@@ -70,9 +70,9 @@
         </p>
 
         <p>
-          Soliloquy lets you create pairs or groups of "personas" (characters)
-          that can be part of a conversation. You can recall any set to the
-          stage, where you have the opportunity to begin a conversation.
+          Soliloquy lets you create groups of "personas" (characters) that can
+          be part of a conversation. You can recall any group to the stage,
+          where you have the opportunity to begin or continue a conversation.
         </p>
 
         <p>
