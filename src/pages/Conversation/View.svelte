@@ -149,7 +149,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 36px);
     padding-top: 36px;
   }
 
