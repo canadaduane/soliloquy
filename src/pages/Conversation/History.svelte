@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { cleanHtml } from "~/utils/cleanHtml";
-  import { getAncestor } from "~/utils/getAncestor";
-
   import { messages } from "~/stores/messages";
   import { me } from "~/stores/me";
 
@@ -11,7 +8,6 @@
 
   function scrollToBottom(_messages, outerEl) {
     if (outerEl) {
-      // const scrollEl = getAncestor(outerEl, "r-scroll");
       setTimeout(() => {
         outerEl.scrollTop = outerEl.scrollHeight;
       }, 0);

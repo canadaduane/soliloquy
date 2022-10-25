@@ -2,7 +2,6 @@
   import { createEventDispatcher } from "svelte";
 
   import { me } from "~/stores/me";
-
   import { selectedCharacters } from "~/stores/selectedCharacters";
 
   import Button from "~/kit/Button.svelte";
