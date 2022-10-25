@@ -7,6 +7,7 @@
   import IoIosArrowRoundBack from "svelte-icons/io/IoIosArrowRoundBack.svelte";
 
   import { messages } from "~/stores/messages";
+  import { selectedCharacters } from "~/stores/selectedCharacters";
 
   import Icon from "~/kit/Icon.svelte";
   import Button from "~/kit/Button.svelte";
@@ -18,7 +19,14 @@
 
   function exportConversation() {
     exported = JSON.stringify(
-      $messages.map((msg) => [msg.character.name, msg.timestamp, msg.content]),
+      {
+        personas: $selectedCharacters,
+        history: $messages.map((msg) => ({
+          id: msg.character.id,
+          ts: msg.timestamp,
+          msg: msg.content,
+        })),
+      },
       null,
       2
     );
@@ -172,9 +180,12 @@
     display: block;
     font-family: monospace;
     max-height: 100px;
+    width: 50vw;
     overflow-y: auto;
     margin: 12px 0;
     white-space: pre;
+    border: 2px solid var(--fg0);
+    border-radius: 6px;
   }
 
   s-footer {

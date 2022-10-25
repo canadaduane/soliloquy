@@ -1,6 +1,7 @@
 export type Page = "title" | "conversation" | "casting";
 
 export type Character = {
+  id: string;
   name: string;
   color: string;
   image: string;

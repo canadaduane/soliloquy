@@ -1,14 +1,16 @@
 import type { Character } from "../types";
+import type { Writable } from "svelte/store";
 
-import { writable, type Writable } from "svelte/store";
+import { writable } from "svelte-local-storage-store";
 import Color from "colorjs.io";
+import { nanoid } from "nanoid";
 
 let color = 0;
 const lg = 0.65; // lightness
 const ch = 0.1; // chroma
 const step = 360 / 12; // divide the color space into 12
 
-export function makeCharacter(traits: {
+export function makePersona(traits: {
   name: string;
   color?: string;
   image?: string;
@@ -17,6 +19,7 @@ export function makeCharacter(traits: {
   isSelected?: boolean;
 }): Character {
   return {
+    id: nanoid(10),
     name: traits.name,
     color: traits.color ?? new Color("oklch", [lg, ch, (color += step)]),
     image: traits.image
@@ -30,78 +33,78 @@ export function makeCharacter(traits: {
   };
 }
 
-export const characters: Writable<Character[]> = writable([
-  makeCharacter({
+export const characters: Writable<Character[]> = writable("personas", [
+  makePersona({
     name: "Creator",
     image: "creator.webp",
     description:
       "The drive to express and create--to paint, compose, build, innovate.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Explorer",
     image: "explorer.webp",
     description: "Wanderlust, novelty, curiosity.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Outlaw",
     image: "outlaw.webp",
     description: "Rule-breaker, don't cross my boundaries.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Jester",
     image: "jester.webp",
     description: "Comic, fun-lover, goof, enjoys the moment.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Lover",
     image: "lover.webp",
     description:
       "Giving yourself fully, entranced by life, possibly insane but ok with it.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Caregiver",
     image: "caregiver.webp",
     description: "Expanding the self, duty and concern for others.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Everyman",
     image: "everyman.webp",
     description: "Get along, hang with friends, keep things simple & routine.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Innocent",
     image: "innocent.webp",
     description: "The wonder of first experiences, untainted and no judgment.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Ruler",
     image: "ruler.webp",
     description: "Order and prosperity, tight grip, avoid uncertainties.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Sage",
     image: "sage.webp",
     description:
       "Understanding of many generations, patience, influence without control.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Magician",
     image: "magician.webp",
     description:
       "Unexpected, unpredictable, you never know what's around the corner.",
   }),
 
-  makeCharacter({
+  makePersona({
     name: "Hero",
     image: "hero.webp",
     description: "Action is mine, I will make my mark, right wrongs.",

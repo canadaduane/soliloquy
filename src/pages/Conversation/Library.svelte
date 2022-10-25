@@ -1,25 +1,27 @@
 <script lang="ts">
-  import type { Character } from "../../types";
+  import type { Character } from "~/types";
 
   import { createEventDispatcher } from "svelte";
   import IoIosClose from "svelte-icons/io/IoIosClose.svelte";
 
-  import { characters, makeCharacter } from "../../stores/characters";
-  import { me } from "../../stores/me";
+  import { me } from "~/stores/me";
+  import { characters, makePersona } from "~/stores/characters";
 
-  import Persona from "./Persona.svelte";
   import Title from "~/kit/Title.svelte";
   import Button from "~/kit/Button.svelte";
   import Icon from "~/kit/Icon.svelte";
 
+  import Persona from "./Persona.svelte";
+
   const dispatch = createEventDispatcher();
 
-  const plusCharacter = makeCharacter({
+  const plusCharacter = makePersona({
     name: "Add Character",
   });
 
   function addCharacter() {
     const newCharacter: Character = {
+      id: "123",
       name: "Edit New Persona",
       color: "#f9e",
       image: null,

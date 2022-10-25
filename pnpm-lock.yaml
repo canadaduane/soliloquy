@@ -9,6 +9,7 @@ specifiers:
   anchorme: ^2.1.2
   colorjs.io: ^0.4.0
   concurrently: ^7.3.0
+  nanoid: ^4.0.0
   rollup: ^3.2.2
   svelte: ^3.52.0
   svelte-icons: ^2.1.0
@@ -22,6 +23,7 @@ dependencies:
   '@floating-ui/dom': 1.0.2
   anchorme: 2.1.2
   colorjs.io: 0.4.0
+  nanoid: 4.0.0
   svelte-icons: 2.1.0
   svelte-local-storage-store: 0.3.1_svelte@3.52.0
   xss: 1.0.14
@@ -1097,6 +1099,12 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
     dev: true
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /next-tick/1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
