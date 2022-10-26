@@ -3,6 +3,7 @@
 
   import { me } from "~/stores/me";
   import { selectedCharacters } from "~/stores/selectedCharacters";
+  import { currentConversationId } from "~/stores/currentConversationId";
 
   import Button from "~/kit/Button.svelte";
   import Title from "~/kit/Title.svelte";
@@ -59,6 +60,7 @@
           {/if}
         </Button>
       </s-add-button>
+      <div style="text-align:center">{$currentConversationId}</div>
     </s-pane>
 
     <s-pane style="width:300px">

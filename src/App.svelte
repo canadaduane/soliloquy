@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Page, Character } from "./types";
 
-  import TitlePage from "./pages/TitlePage.svelte";
+  import TitlePage from "./pages/TitlePage/View.svelte";
   import Conversation from "./pages/Conversation/View.svelte";
   import Casting from "./pages/Casting/View.svelte";
 

@@ -25,10 +25,10 @@
     <s-scrollable>
       {#each $messages as message}
         <Message
-          name={message.character.name}
-          color={message.character.color}
-          image={message.character.image}
-          side={message.character === $me ? "right" : "left"}
+          name={message.persona.name}
+          color={message.persona.color}
+          image={message.persona.image}
+          side={message.persona === $me ? "right" : "left"}
         >
           {@html message.content}
         </Message>

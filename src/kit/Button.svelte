@@ -31,6 +31,10 @@
     cursor: pointer;
   }
 
+  button:focus {
+    box-shadow: 0 0 2px 2px var(--fg2);
+  }
+
   button:hover {
     background-color: var(--red-alt);
     color: var(--bg1);

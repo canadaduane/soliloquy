@@ -11,6 +11,7 @@ specifiers:
   concurrently: ^7.3.0
   nanoid: ^4.0.0
   rollup: ^3.2.2
+  s-ago: ^2.2.0
   svelte: ^3.52.0
   svelte-icons: ^2.1.0
   svelte-local-storage-store: ^0.3.1
@@ -24,6 +25,7 @@ dependencies:
   anchorme: 2.1.2
   colorjs.io: 0.4.0
   nanoid: 4.0.0
+  s-ago: 2.2.0
   svelte-icons: 2.1.0
   svelte-local-storage-store: 0.3.1_svelte@3.52.0
   xss: 1.0.14
@@ -1238,6 +1240,10 @@ packages:
     dependencies:
       tslib: 2.4.0
     dev: true
+
+  /s-ago/2.2.0:
+    resolution: {integrity: sha512-t6Q/aFCCJSBf5UUkR/WH0mDHX8EGm2IBQ7nQLobVLsdxOlkryYMbOlwu2D4Cf7jPUp0v1LhfPgvIZNoi9k8lUA==}
+    dev: false
 
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}

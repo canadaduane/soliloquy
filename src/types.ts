@@ -11,7 +11,16 @@ export type Character = {
 };
 
 export type Message = {
-  character: Character;
+  persona: Character;
   content: string;
   timestamp: Date;
+};
+
+export type Conversation = {
+  id: string;
+  personaIds: string[];
+  createdAt: Date;
+  lastModifiedAt: Date;
+  messageCount: number;
+  starred: boolean;
 };

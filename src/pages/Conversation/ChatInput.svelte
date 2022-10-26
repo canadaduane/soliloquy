@@ -2,9 +2,9 @@
   import { createEventDispatcher, onMount } from "svelte";
   import IoMdSend from "svelte-icons/io/IoMdSend.svelte";
 
-  import { messages } from "~/stores/messages";
-  import { me } from "~/stores/me";
   import { cleanHtml } from "~/utils/cleanHtml";
+
+  import { sendMessage } from "~/utils/persistMessages";
 
   const dispatch = createEventDispatcher();
 
@@ -15,26 +15,9 @@
     messageEl.focus();
   }
 
-  function addMessage(text) {
-    if (text.match(/^\s*$/)) {
-      dispatch("close");
-    } else {
-      // add message
-      messages.update((msgs) => {
-        const message = {
-          character: $me,
-          content: text,
-          timestamp: new Date(),
-        };
-        msgs.push(message);
-        return msgs;
-      });
-    }
-  }
-
-  function sendMessage() {
+  function sendMessageClean() {
     const htmlMsg = cleanHtml(message).replace("\n", "<br/>");
-    addMessage(htmlMsg);
+    sendMessage(htmlMsg);
     message = "";
   }
 
@@ -47,7 +30,7 @@
       (event.key === "Enter" || event.key === "Return") &&
       !event.shiftKey
     ) {
-      sendMessage();
+      sendMessageClean();
     }
   }
 
@@ -65,7 +48,9 @@
     bind:textContent={message}
     bind:this={messageEl}
   />
-  <r-send on:click={sendMessage} role="button">
+
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <r-send on:click={sendMessageClean} role="button">
     <r-send-icon>
       <IoMdSend />
     </r-send-icon>

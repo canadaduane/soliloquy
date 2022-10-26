@@ -10,6 +10,17 @@ const lg = 0.65; // lightness
 const ch = 0.1; // chroma
 const step = 360 / 12; // divide the color space into 12
 
+function nextColor() {
+  return new Color("oklch", [lg, ch, (color += step)])
+    .to("srgb")
+    .toString({ format: "hex" });
+}
+
+function archetypesRelPath(path) {
+  if (path) return path.charAt(0) === "/" ? path : `/archetypes/${path}`;
+  else return null;
+}
+
 export function makePersona(traits: {
   name: string;
   color?: string;
@@ -21,12 +32,8 @@ export function makePersona(traits: {
   return {
     id: nanoid(10),
     name: traits.name,
-    color: traits.color ?? new Color("oklch", [lg, ch, (color += step)]),
-    image: traits.image
-      ? traits.image.charAt(0) === "/"
-        ? traits.image
-        : `/archetypes/${traits.image}`
-      : null,
+    color: traits.color ?? nextColor(),
+    image: archetypesRelPath(traits.image),
     description: traits.description ?? null,
     isNew: traits.isNew ?? false,
     isSelected: traits.isSelected ?? false,
