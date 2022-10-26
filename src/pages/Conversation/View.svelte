@@ -60,7 +60,6 @@
           {/if}
         </Button>
       </s-add-button>
-      <div style="text-align:center">{$currentConversationId}</div>
     </s-pane>
 
     <s-pane style="width:300px">

@@ -39,7 +39,6 @@
   // }
 
   const openConversation = (conversationId: string | null) => () => {
-    console.log("openConversation", conversationId);
     loadConversation(conversationId);
     dispatch("begin");
   };

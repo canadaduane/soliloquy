@@ -94,7 +94,6 @@ export function loadConversation(conversationId) {
     messages.set([]);
   } else {
     const loadedMessages = loadMessages(conversationId);
-    console.log("load", conversationId, loadedMessages);
     messages.set(loadedMessages);
   }
   currentConversationId.set(conversationId);
