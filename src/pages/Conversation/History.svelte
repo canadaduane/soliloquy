@@ -21,14 +21,14 @@
 <s-history bind:this={outerEl}>
   {#if $messages.length === 0}
     <note>Empty chat history</note>
-  {:else}
+  {:else if $me}
     <s-scrollable>
       {#each $messages as message}
         <Message
           name={message.persona.name}
           color={message.persona.color}
           image={message.persona.image}
-          side={message.persona === $me ? "right" : "left"}
+          side={message.persona.id === $me.id ? "right" : "left"}
         >
           {@html message.content}
         </Message>
